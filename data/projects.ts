@@ -17,6 +17,7 @@ export const projects: Project[] = [
       "Transaksi penjualan dan pembelian",
       "Pembayaran dan berkas pelanggan",
     ],
+    repositoryUrl: "https://github.com/DwipaRaharja/app_autoHub.git",
     accent: "ember",
   },
   {

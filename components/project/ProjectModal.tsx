@@ -80,7 +80,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {project.description}
         </p>
 
-        <div className="mt-10 grid items-center gap-10 lg:grid-cols-[1.15fr_.85fr]">
+        <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1.15fr_.85fr]">
           <ProjectPreview project={project} />
 
           <div>
@@ -119,6 +119,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             <a
               href={project.repositoryUrl ?? "#contact"}
+              target={project.repositoryUrl ? "_blank" : undefined}
+              rel={project.repositoryUrl ? "noopener noreferrer" : undefined}
               onClick={project.repositoryUrl ? undefined : onClose}
               className="mt-8 inline-flex h-12 items-center gap-3 rounded-lg border border-black px-4 text-sm font-bold transition-colors hover:bg-black hover:text-white"
             >
