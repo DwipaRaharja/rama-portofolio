@@ -21,21 +21,22 @@ export const projects: Project[] = [
     accent: "ember",
   },
   {
-    id: "business-dashboard",
-    title: "Business Dashboard",
-    eyebrow: "Solusi operasional terpusat",
+    id: "ramadwipa-portfolio",
+    title: "Website Portofolio",
+    eyebrow: "Personal branding digital",
     description:
-      "Dashboard bisnis untuk membaca performa, mencatat aktivitas tim, dan merangkum data penting dalam satu tempat.",
+      "Website portofolio interaktif untuk memperkenalkan profil, kemampuan, dan project yang telah saya bangun.",
     summary:
-      "Dashboard yang menyatukan informasi operasional agar pemilik bisnis dapat mengambil keputusan dengan lebih cepat. Fokus utama proyek ini adalah keterbacaan data, alur kerja yang sederhana, dan pengalaman yang nyaman di berbagai perangkat.",
+      "Website personal yang dirancang untuk menampilkan profil dan perjalanan saya sebagai Full Stack Developer. Dibangun dengan tampilan monokrom yang konsisten, navigasi yang responsif, serta animasi interaktif untuk menghadirkan pengalaman yang menarik di berbagai perangkat.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     imageUrl: "/projects/ramadwipa-portfolio-home.png",
     imageAlt: "Halaman utama website portofolio Ramadwipa",
     features: [
-      "Ringkasan performa dan aktivitas",
-      "Tampilan responsif untuk seluruh perangkat",
-      "Komponen antarmuka yang konsisten",
+      "Profil, kemampuan, dan showcase project",
+      "Animasi scroll interaktif dan responsif",
+      "Form kontak dan integrasi media sosial",
     ],
+    repositoryUrl: "https://github.com/DwipaRaharja/rama-portofolio.git",
     accent: "violet",
   },
 ];
