@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import { FormEvent, useState } from "react";
 
 import { Container } from "@/components/ui/Container";
@@ -11,8 +12,31 @@ import { siteConfig } from "@/data/site";
 const fieldClassName =
   "h-11 w-full rounded-md border border-black/45 bg-white px-3 text-sm outline-none transition focus:border-black focus:ring-2 focus:ring-black/10";
 
+const formVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.17,
+    },
+  },
+};
+
+const fieldVariants: Variants = {
+  hidden: { opacity: 0, y: 34 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export function ContactSection() {
   const [feedbackMessage, setFeedbackMessage] = useState("");
+  const shouldReduceMotion = useReducedMotion();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,41 +88,96 @@ export function ContactSection() {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="mx-auto max-w-[1000px]">
+            <motion.form
+              onSubmit={handleSubmit}
+              className="mx-auto max-w-[1000px]"
+              variants={formVariants}
+              initial={shouldReduceMotion ? "visible" : "hidden"}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.12 }}
+            >
               <div className="grid gap-5 md:grid-cols-2">
-                <label className="text-sm font-semibold">
+                <motion.label variants={fieldVariants} className="text-sm font-semibold">
                   Nama
-                  <input className={`${fieldClassName} mt-2`} type="text" name="name" placeholder="Input nama kamu" autoComplete="name" required />
-                </label>
-                <label className="text-sm font-semibold">
+                  <motion.input
+                    className={`${fieldClassName} mt-2`}
+                    type="text"
+                    name="name"
+                    placeholder="Input nama kamu"
+                    autoComplete="name"
+                    required
+                    whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.label>
+                <motion.label variants={fieldVariants} className="text-sm font-semibold">
                   Nomor Telepon
-                  <input className={`${fieldClassName} mt-2`} type="tel" name="phone" placeholder="Input nomor telepon kamu" autoComplete="tel" required />
-                </label>
-                <label className="text-sm font-semibold">
+                  <motion.input
+                    className={`${fieldClassName} mt-2`}
+                    type="tel"
+                    name="phone"
+                    placeholder="Input nomor telepon kamu"
+                    autoComplete="tel"
+                    required
+                    whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.label>
+                <motion.label variants={fieldVariants} className="text-sm font-semibold">
                   Email
-                  <input className={`${fieldClassName} mt-2`} type="email" name="email" placeholder="Input email kamu" autoComplete="email" required />
-                </label>
-                <label className="text-sm font-semibold">
+                  <motion.input
+                    className={`${fieldClassName} mt-2`}
+                    type="email"
+                    name="email"
+                    placeholder="Input email kamu"
+                    autoComplete="email"
+                    required
+                    whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.label>
+                <motion.label variants={fieldVariants} className="text-sm font-semibold">
                   Nama Bisnis
-                  <input className={`${fieldClassName} mt-2`} type="text" name="business" placeholder="Input nama bisnis (opsional)" autoComplete="organization" />
-                </label>
+                  <motion.input
+                    className={`${fieldClassName} mt-2`}
+                    type="text"
+                    name="business"
+                    placeholder="Input nama bisnis (opsional)"
+                    autoComplete="organization"
+                    whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.label>
               </div>
 
-              <label className="mt-5 block text-sm font-semibold">
+              <motion.label variants={fieldVariants} className="mt-5 block text-sm font-semibold">
                 Apa yang bisa kita buat?
-                <textarea className="mt-2 min-h-40 w-full resize-y rounded-md border border-black/45 bg-white p-3 text-sm outline-none transition focus:border-black focus:ring-2 focus:ring-black/10" name="message" placeholder="Ceritakan kebutuhan atau ide project kamu" required />
-              </label>
+                <motion.textarea
+                  className="mt-2 min-h-40 w-full resize-y rounded-md border border-black/45 bg-white p-3 text-sm outline-none transition focus:border-black focus:ring-2 focus:ring-black/10"
+                  name="message"
+                  placeholder="Ceritakan kebutuhan atau ide project kamu"
+                  required
+                  whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.003 }}
+                  transition={{ duration: 0.2 }}
+                />
+              </motion.label>
 
-              <div className="mt-7 text-center">
-                <button type="submit" className="inline-flex h-12 items-center gap-2 rounded-lg bg-black px-5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5">
+              <motion.div variants={fieldVariants} className="mt-7 text-center">
+                <motion.button
+                  type="submit"
+                  className="inline-flex h-12 items-center gap-2 rounded-lg bg-black px-5 text-sm font-bold text-white"
+                  whileHover={shouldReduceMotion ? undefined : { y: -3 }}
+                  whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
+                >
                   Kirim via WhatsApp
                   <WhatsappIcon className="size-4" />
-                </button>
+                </motion.button>
                 <p aria-live="polite" className="mt-3 min-h-5 text-xs text-black/55">
                   {feedbackMessage}
                 </p>
-              </div>
-            </form>
+              </motion.div>
+            </motion.form>
           </div>
         </Reveal>
       </Container>

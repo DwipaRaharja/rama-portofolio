@@ -291,8 +291,9 @@ export function CallToActionSection() {
 
   return (
     <div
+      id="solution"
       ref={sectionRef}
-      className="relative h-[100svh] min-h-[600px] overflow-hidden bg-white motion-reduce:h-auto motion-reduce:min-h-0 md:min-h-[680px]"
+      className="relative h-[100svh] min-h-[600px] scroll-mt-28 overflow-hidden bg-white motion-reduce:h-auto motion-reduce:min-h-0 md:min-h-[680px]"
       aria-labelledby="solution-process-title"
     >
       <div

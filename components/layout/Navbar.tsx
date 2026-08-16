@@ -11,7 +11,12 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sections = ["home", "about", "portfolio", "contact"]
+    const sectionIds = [
+      ...navigationItems.map((item) => item.href.slice(1)),
+      "solution",
+      "contact",
+    ];
+    const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section));
 
@@ -33,6 +38,7 @@ export function Navbar() {
   }, []);
 
   const closeMenu = () => setIsMenuOpen(false);
+  const isContactActive = activeSection === "contact";
 
   return (
     <header className="sticky top-0 z-40 bg-white/90 px-4 py-4 backdrop-blur-lg sm:px-6">
@@ -54,6 +60,7 @@ export function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
+                aria-current={isActive ? "location" : undefined}
                 className={`relative py-4 text-sm font-semibold transition-colors ${
                   isActive ? "text-black" : "text-black/60 hover:text-black"
                 }`}
@@ -70,7 +77,12 @@ export function Navbar() {
 
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+            aria-current={isContactActive ? "location" : undefined}
+            className={`inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white transition-[transform,box-shadow] hover:-translate-y-0.5 ${
+              isContactActive
+                ? "-translate-y-0.5 shadow-[0_0_0_4px_rgba(0,0,0,0.14)]"
+                : "shadow-none"
+            }`}
           >
             Kontak Saya
             <ArrowUpRightIcon className="size-4" />
@@ -101,20 +113,35 @@ export function Navbar() {
             transition={{ duration: 0.2 }}
             className="absolute inset-x-4 top-[84px] rounded-xl border border-black bg-white p-3 shadow-xl sm:inset-x-6 lg:hidden"
           >
-            {navigationItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className="block rounded-lg px-4 py-3 text-sm font-semibold hover:bg-black hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navigationItems.map((item) => {
+              const sectionId = item.href.slice(1);
+              const isActive = activeSection === sectionId;
+
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={closeMenu}
+                  aria-current={isActive ? "location" : undefined}
+                  className={`block rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                    isActive
+                      ? "bg-black text-white"
+                      : "hover:bg-black hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
             <a
               href="#contact"
               onClick={closeMenu}
-              className="mt-2 flex items-center justify-between rounded-lg bg-black px-4 py-3 text-sm font-bold text-white"
+              aria-current={isContactActive ? "location" : undefined}
+              className={`mt-2 flex items-center justify-between rounded-lg bg-black px-4 py-3 text-sm font-bold text-white transition-shadow ${
+                isContactActive
+                  ? "shadow-[0_0_0_3px_rgba(0,0,0,0.16)]"
+                  : "shadow-none"
+              }`}
             >
               Kontak Saya
               <ArrowUpRightIcon className="size-4" />

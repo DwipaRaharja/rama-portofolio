@@ -11,9 +11,9 @@ type RevealProps = {
 };
 
 const hiddenOffset = {
-  up: { x: 0, y: 34 },
-  left: { x: -34, y: 0 },
-  right: { x: 34, y: 0 },
+  up: { x: 0, y: 44 },
+  left: { x: -44, y: 0 },
+  right: { x: 44, y: 0 },
 };
 
 export function Reveal({
@@ -27,8 +27,12 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, ...hiddenOffset[direction] }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{
+        duration: 1.05,
+        delay: 0.12 + delay * 1.5,
+        ease: [0.22, 1, 0.36, 1],
+      }}
     >
       {children}
     </motion.div>

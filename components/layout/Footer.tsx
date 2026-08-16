@@ -8,7 +8,7 @@ import { navigationItems, siteConfig } from "@/data/site";
 
 export function Footer() {
   const shouldReduceMotion = useReducedMotion();
-  const revealOffset = shouldReduceMotion ? 0 : 28;
+  const revealOffset = shouldReduceMotion ? 0 : 42;
 
   return (
     <footer className="overflow-hidden bg-black pb-6 pt-14 text-white">
@@ -17,8 +17,12 @@ export function Footer() {
           <motion.div
             initial={{ opacity: 0, y: revealOffset }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.95,
+              delay: shouldReduceMotion ? 0 : 0.12,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <p className="text-xl font-extrabold tracking-[-0.04em]">{siteConfig.name}.</p>
             <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-white/55">
@@ -29,10 +33,10 @@ export function Footer() {
           <motion.div
             initial={{ opacity: 0, y: revealOffset }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 0.5,
-              delay: shouldReduceMotion ? 0 : 0.1,
+              duration: shouldReduceMotion ? 0 : 0.95,
+              delay: shouldReduceMotion ? 0 : 0.28,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -52,10 +56,10 @@ export function Footer() {
           <motion.div
             initial={{ opacity: 0, y: revealOffset }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 0.5,
-              delay: shouldReduceMotion ? 0 : 0.2,
+              duration: shouldReduceMotion ? 0 : 0.95,
+              delay: shouldReduceMotion ? 0 : 0.44,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -68,10 +72,10 @@ export function Footer() {
           <motion.p
             initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 72 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.18 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 0.8,
-              delay: shouldReduceMotion ? 0 : 0.15,
+              duration: shouldReduceMotion ? 0 : 1.2,
+              delay: shouldReduceMotion ? 0 : 0.32,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="whitespace-nowrap text-center text-[clamp(4.2rem,12.5vw,11rem)] font-extrabold leading-none tracking-[-0.075em]"

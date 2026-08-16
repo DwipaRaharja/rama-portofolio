@@ -15,8 +15,12 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.55, delay: index * 0.08 }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{
+        duration: 0.95,
+        delay: 0.14 + index * 0.16,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="h-full"
     >
       <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/60 bg-white p-4 text-black transition-colors duration-[550ms] ease-in-out hover:border-black hover:bg-black hover:text-white sm:p-5">

@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { AboutFlowLines, DotGrid } from "@/components/ui/Decorations";
 import { BrainIcon, BuildingIcon, CodeIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
+import { TechStackSection } from "@/components/sections/TechStackSection";
 import { PortraitIllustration } from "@/components/visuals/PortraitIllustration";
 
 const values = [
@@ -59,6 +60,8 @@ export function AboutSection() {
             </p>
           </Reveal>
         </div>
+
+        <TechStackSection />
 
         <Reveal
           delay={0.14}
