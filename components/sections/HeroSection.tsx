@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { IntroContentGate } from "@/components/layout/IntroContentGate";
 import { CornerFlowLines, WaveLines } from "@/components/ui/Decorations";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { ActionLink } from "@/components/ui/ActionLink";
@@ -7,14 +8,15 @@ import { HeroVisual } from "@/components/visuals/HeroVisual";
 
 export function HeroSection() {
   return (
-    <section id="home" className="scroll-mt-28 pb-16 pt-2 sm:pb-24">
-      <Container>
-        <div className="section-card-shadow relative overflow-hidden rounded-2xl border-2 border-black bg-white px-6 py-12 sm:px-10 sm:py-16 lg:min-h-[570px] lg:px-14">
-          <CornerFlowLines className="pointer-events-none absolute -left-24 -top-8 h-[330px] w-[520px] text-black/15 sm:-left-12 sm:-top-10 sm:h-[410px] sm:w-[650px] lg:-left-8 lg:-top-12 lg:h-[440px] lg:w-[700px]" />
-          <WaveLines className="pointer-events-none absolute -bottom-36 -right-48 h-[380px] w-[600px] rotate-180 text-black/15" />
+    <IntroContentGate>
+      <section id="home" className="scroll-mt-28 pb-16 pt-2 sm:pb-24">
+        <Container>
+          <div className="section-card-shadow relative overflow-hidden rounded-2xl border-2 border-black bg-white px-6 py-12 sm:px-10 sm:py-16 lg:min-h-[570px] lg:px-14">
+            <CornerFlowLines className="pointer-events-none absolute -left-24 -top-8 h-[330px] w-[520px] text-black/15 sm:-left-12 sm:-top-10 sm:h-[410px] sm:w-[650px] lg:-left-8 lg:-top-12 lg:h-[440px] lg:w-[700px]" />
+            <WaveLines className="pointer-events-none absolute -bottom-36 -right-48 h-[380px] w-[600px] rotate-180 text-black/15" />
 
-          <div className="relative z-10 grid items-center gap-14 lg:grid-cols-[1.08fr_.92fr]">
-            <Reveal direction="left">
+            <div className="relative z-10 grid items-center gap-14 lg:grid-cols-[1.08fr_.92fr]">
+              <Reveal direction="left">
               <p className="mb-4 text-base font-medium sm:text-lg">
                 Halo Saya, <strong>Ramadwipa</strong>{" "}
                 <span aria-hidden="true">👋</span>
@@ -37,18 +39,19 @@ export function HeroSection() {
                   <ArrowRightIcon className="size-4" />
                 </ActionLink>
               </div>
-            </Reveal>
+              </Reveal>
 
-            <Reveal
-              direction="right"
-              delay={0.12}
-              className="mx-auto w-full max-w-[470px]"
-            >
-              <HeroVisual />
-            </Reveal>
+              <Reveal
+                direction="right"
+                delay={0.12}
+                className="mx-auto w-full max-w-[470px]"
+              >
+                <HeroVisual />
+              </Reveal>
+            </div>
           </div>
-        </div>
-      </Container>
-    </section>
+        </Container>
+      </section>
+    </IntroContentGate>
   );
 }

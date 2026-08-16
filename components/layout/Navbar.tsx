@@ -1,14 +1,62 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { ArrowUpRightIcon, CloseIcon, MenuIcon } from "@/components/ui/Icons";
+import {
+  PORTFOLIO_INTRO_EVENT,
+  shouldPlayPortfolioIntro,
+} from "@/data/portfolio-intro";
 import { navigationItems } from "@/data/site";
+
+const navbarVariants: Variants = {
+  hidden: { opacity: 0, y: -22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.34,
+      ease: [0.22, 1, 0.36, 1],
+      when: "beforeChildren",
+    },
+  },
+};
+
+const navigationVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.03,
+      staggerChildren: 0.045,
+    },
+  },
+};
+
+const navigationItemVariants: Variants = {
+  hidden: { opacity: 0, y: -8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.24, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isIntroComplete, setIsIntroComplete] = useState(false);
+
+  useEffect(() => {
+    const completeIntro = () => setIsIntroComplete(true);
+
+    if (!shouldPlayPortfolioIntro()) {
+      completeIntro();
+    }
+
+    window.addEventListener(PORTFOLIO_INTRO_EVENT, completeIntro);
+    return () => window.removeEventListener(PORTFOLIO_INTRO_EVENT, completeIntro);
+  }, []);
 
   useEffect(() => {
     const sectionIds = [
@@ -41,26 +89,39 @@ export function Navbar() {
   const isContactActive = activeSection === "contact";
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 px-4 py-4 backdrop-blur-lg sm:px-6">
-      <nav className="mx-auto flex h-14 max-w-[1280px] items-center justify-between rounded-xl border border-black/25 bg-white px-5 shadow-[0_4px_18px_rgba(0,0,0,0.03)] sm:px-7">
-        <a
+    <motion.header
+      className="sticky top-0 z-40 bg-white/90 px-4 py-4 backdrop-blur-lg sm:px-6"
+      variants={navbarVariants}
+      initial="hidden"
+      animate={isIntroComplete ? "visible" : "hidden"}
+    >
+      <motion.nav
+        className="mx-auto flex h-14 max-w-[1280px] items-center justify-between rounded-xl border border-black/25 bg-white px-5 shadow-[0_4px_18px_rgba(0,0,0,0.03)] sm:px-7"
+        variants={navigationVariants}
+      >
+        <motion.a
           href="#home"
           onClick={closeMenu}
+          variants={navigationItemVariants}
           className="text-lg font-extrabold tracking-[-0.04em] sm:text-xl"
         >
           Ramadwipa.
-        </a>
+        </motion.a>
 
-        <div className="hidden items-center gap-7 lg:flex">
+        <motion.div
+          className="hidden items-center gap-7 lg:flex"
+          variants={navigationVariants}
+        >
           {navigationItems.map((item) => {
             const sectionId = item.href.slice(1);
             const isActive = activeSection === sectionId;
 
             return (
-              <a
+              <motion.a
                 key={item.href}
                 href={item.href}
                 aria-current={isActive ? "location" : undefined}
+                variants={navigationItemVariants}
                 className={`relative py-4 text-sm font-semibold transition-colors ${
                   isActive ? "text-black" : "text-black/60 hover:text-black"
                 }`}
@@ -71,13 +132,14 @@ export function Navbar() {
                     isActive ? "scale-x-100" : "scale-x-0"
                   }`}
                 />
-              </a>
+              </motion.a>
             );
           })}
 
-          <a
+          <motion.a
             href="#contact"
             aria-current={isContactActive ? "location" : undefined}
+            variants={navigationItemVariants}
             className={`inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white transition-[transform,box-shadow] hover:-translate-y-0.5 ${
               isContactActive
                 ? "-translate-y-0.5 shadow-[0_0_0_4px_rgba(0,0,0,0.14)]"
@@ -86,14 +148,15 @@ export function Navbar() {
           >
             Kontak Saya
             <ArrowUpRightIcon className="size-4" />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
-        <button
+        <motion.button
           type="button"
           aria-label={isMenuOpen ? "Tutup menu" : "Buka menu"}
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((current) => !current)}
+          variants={navigationItemVariants}
           className="grid size-10 place-items-center rounded-lg border border-black/20 lg:hidden"
         >
           {isMenuOpen ? (
@@ -101,8 +164,8 @@ export function Navbar() {
           ) : (
             <MenuIcon className="size-5" />
           )}
-        </button>
-      </nav>
+        </motion.button>
+      </motion.nav>
 
       <AnimatePresence>
         {isMenuOpen && (
@@ -149,6 +212,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

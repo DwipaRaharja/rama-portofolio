@@ -39,8 +39,8 @@ const sectionVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: 1.05,
-      delay: 0.14,
+      duration: 0.65,
+      delay: 0.05,
       ease: [0.22, 1, 0.36, 1],
       when: "beforeChildren",
     },
@@ -52,7 +52,7 @@ const headerVariants: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -60,8 +60,8 @@ const cardsVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 0.08,
-      staggerChildren: 0.08,
+      delayChildren: 0.03,
+      staggerChildren: 0.05,
     },
   },
 };
@@ -72,7 +72,7 @@ const cardVariants: Variants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
