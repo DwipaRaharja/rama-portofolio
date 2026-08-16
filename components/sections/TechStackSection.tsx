@@ -60,8 +60,8 @@ const cardsVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 0.22,
-      staggerChildren: 0.16,
+      delayChildren: 0.08,
+      staggerChildren: 0.08,
     },
   },
 };
@@ -72,7 +72,7 @@ const cardVariants: Variants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   },
 };
 

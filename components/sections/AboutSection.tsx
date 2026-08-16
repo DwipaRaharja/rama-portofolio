@@ -82,14 +82,14 @@ export function AboutSection() {
             >
               <article
                 tabIndex={0}
-                className="group flex min-h-36 w-full cursor-default flex-col items-center justify-center overflow-hidden rounded-xl border border-black/60 bg-black p-5 text-center text-white transition-[background-color,color,box-shadow,transform] duration-500 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 sm:absolute sm:inset-x-0 sm:top-0 sm:cursor-pointer sm:bg-white sm:text-black sm:hover:-translate-y-1 sm:hover:bg-black sm:hover:text-white sm:hover:shadow-xl sm:focus:-translate-y-1 sm:focus:bg-black sm:focus:text-white sm:focus:shadow-xl"
+                className="group flex min-h-36 w-full cursor-default flex-col items-center justify-center overflow-hidden rounded-xl border border-black/60 bg-white p-5 text-center text-black transition-[background-color,color,box-shadow,transform] duration-500 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 sm:absolute sm:inset-x-0 sm:top-0 sm:cursor-pointer sm:hover:-translate-y-1 sm:hover:bg-black sm:hover:text-white sm:hover:shadow-xl sm:focus:-translate-y-1 sm:focus:bg-black sm:focus:text-white sm:focus:shadow-xl"
               >
                 <Icon className="mb-4 size-9 transition-transform duration-500 group-hover:scale-110 group-focus:scale-110" />
                 <p className="text-sm font-bold">{label}</p>
 
                 <div className="grid grid-rows-[1fr] opacity-100 transition-[grid-template-rows,opacity] duration-500 ease-out sm:grid-rows-[0fr] sm:opacity-0 sm:group-hover:grid-rows-[1fr] sm:group-hover:opacity-100 sm:group-focus:grid-rows-[1fr] sm:group-focus:opacity-100">
                   <div className="overflow-hidden">
-                    <p className="pt-4 text-xs leading-5 text-white/75">
+                    <p className="pt-4 text-xs leading-5 text-black/65 transition-colors duration-500 sm:group-hover:text-white/75 sm:group-focus:text-white/75">
                       {description}
                     </p>
                   </div>
