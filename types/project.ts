@@ -6,8 +6,10 @@ export type Project = {
   summary: string;
   technologies: string[];
   features: string[];
+  outcomes: string[];
   accent: "ember" | "violet";
   imageUrl?: string;
   imageAlt?: string;
+  demoUrl?: string;
   repositoryUrl?: string;
 };

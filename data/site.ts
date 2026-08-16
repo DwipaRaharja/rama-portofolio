@@ -8,5 +8,6 @@ export const siteConfig = {
   name: "Ramadwipa",
   role: "Full Stack Developer",
   contactEmail: "ramadwipa168@gmail.com",
+  whatsappNumber: "6287776744538",
   navigation: navigationItems,
 } as const;

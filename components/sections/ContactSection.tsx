@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 
 import { Container } from "@/components/ui/Container";
-import { SendIcon } from "@/components/ui/Icons";
+import { WhatsappIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { siteConfig } from "@/data/site";
@@ -23,9 +23,10 @@ export function ContactSection() {
     const businessName = String(formData.get("business") ?? "");
     const projectDescription = String(formData.get("message") ?? "");
 
-    const subject = encodeURIComponent(`Diskusi project dari ${senderName}`);
-    const body = encodeURIComponent(
+    const message = encodeURIComponent(
       [
+        "Halo Ramadwipa, saya ingin mendiskusikan project.",
+        "",
         `Nama: ${senderName}`,
         `Email: ${senderEmail}`,
         `Nomor telepon: ${phoneNumber}`,
@@ -35,9 +36,14 @@ export function ContactSection() {
         projectDescription,
       ].join("\n"),
     );
+    const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${message}`;
 
-    setFeedbackMessage("Aplikasi email akan terbuka dengan pesan yang sudah disiapkan.");
-    window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
+    setFeedbackMessage("WhatsApp akan terbuka dengan pesan yang sudah disiapkan.");
+    const whatsappWindow = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+
+    if (!whatsappWindow) {
+      window.location.href = whatsappUrl;
+    }
   };
 
   return (
@@ -85,8 +91,8 @@ export function ContactSection() {
 
               <div className="mt-7 text-center">
                 <button type="submit" className="inline-flex h-12 items-center gap-2 rounded-lg bg-black px-5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5">
-                  Mari Diskusi
-                  <SendIcon className="size-4" />
+                  Kirim via WhatsApp
+                  <WhatsappIcon className="size-4" />
                 </button>
                 <p aria-live="polite" className="mt-3 min-h-5 text-xs text-black/55">
                   {feedbackMessage}

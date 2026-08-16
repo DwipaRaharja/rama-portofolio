@@ -2,7 +2,12 @@ import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
 import { ProjectPreview } from "@/components/project/ProjectPreview";
-import { CheckIcon, CloseIcon, GithubIcon } from "@/components/ui/Icons";
+import {
+  ArrowUpRightIcon,
+  CheckIcon,
+  CloseIcon,
+  GithubIcon,
+} from "@/components/ui/Icons";
 import type { Project } from "@/types/project";
 
 type ProjectModalProps = {
@@ -92,6 +97,18 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             <div className="mt-8">
+              <h3 className="text-2xl font-extrabold tracking-[-0.04em]">Dampak Project</h3>
+              <ul className="mt-4 space-y-3">
+                {project.outcomes.map((outcome) => (
+                  <li key={outcome} className="flex items-start gap-3 text-sm text-black/70">
+                    <CheckIcon className="mt-0.5 size-5 shrink-0" />
+                    {outcome}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8">
               <h3 className="text-2xl font-extrabold tracking-[-0.04em]">Tech Stack</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {project.technologies.map((technology) => (
@@ -117,16 +134,30 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               </ul>
             </div>
 
-            <a
-              href={project.repositoryUrl ?? "#contact"}
-              target={project.repositoryUrl ? "_blank" : undefined}
-              rel={project.repositoryUrl ? "noopener noreferrer" : undefined}
-              onClick={project.repositoryUrl ? undefined : onClose}
-              className="mt-8 inline-flex h-12 items-center gap-3 rounded-lg border border-black px-4 text-sm font-bold transition-colors hover:bg-black hover:text-white"
-            >
-              <GithubIcon className="size-5" />
-              {project.repositoryUrl ? "Buka GitHub" : "Diskusikan Project"}
-            </a>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {project.demoUrl && (
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-12 items-center gap-3 rounded-lg bg-black px-4 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+                >
+                  <ArrowUpRightIcon className="size-5" />
+                  Lihat Website
+                </a>
+              )}
+
+              <a
+                href={project.repositoryUrl ?? "#contact"}
+                target={project.repositoryUrl ? "_blank" : undefined}
+                rel={project.repositoryUrl ? "noopener noreferrer" : undefined}
+                onClick={project.repositoryUrl ? undefined : onClose}
+                className="inline-flex h-12 items-center gap-3 rounded-lg border border-black px-4 text-sm font-bold transition-colors hover:bg-black hover:text-white"
+              >
+                <GithubIcon className="size-5" />
+                {project.repositoryUrl ? "Buka GitHub" : "Diskusikan Project"}
+              </a>
+            </div>
           </div>
         </div>
       </motion.div>
