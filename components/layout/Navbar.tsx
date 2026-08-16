@@ -90,13 +90,13 @@ export function Navbar() {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 bg-white/90 px-4 py-4 backdrop-blur-lg sm:px-6"
+      className="sticky top-0 z-40 bg-white/90 px-5 py-4 backdrop-blur-lg sm:px-8 lg:px-10"
       variants={navbarVariants}
       initial="hidden"
       animate={isIntroComplete ? "visible" : "hidden"}
     >
       <motion.nav
-        className="mx-auto flex h-14 max-w-[1280px] items-center justify-between rounded-xl border border-black/25 bg-white px-5 shadow-[0_4px_18px_rgba(0,0,0,0.03)] sm:px-7"
+        className="mx-auto flex h-14 max-w-[1200px] items-center justify-between rounded-xl border border-black/25 bg-white px-5 shadow-[0_4px_18px_rgba(0,0,0,0.03)] sm:px-7"
         variants={navigationVariants}
       >
         <motion.a
@@ -109,7 +109,7 @@ export function Navbar() {
         </motion.a>
 
         <motion.div
-          className="hidden items-center gap-7 lg:flex"
+          className="hidden items-center gap-5 xl:gap-7 lg:flex"
           variants={navigationVariants}
         >
           {navigationItems.map((item) => {
@@ -174,7 +174,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="absolute inset-x-4 top-[84px] rounded-xl border border-black bg-white p-3 shadow-xl sm:inset-x-6 lg:hidden"
+            className="absolute inset-x-5 top-[84px] rounded-xl border border-black bg-white p-3 shadow-xl sm:inset-x-8 lg:hidden"
           >
             {navigationItems.map((item) => {
               const sectionId = item.href.slice(1);

@@ -1,30 +1,11 @@
 import { Container } from "@/components/ui/Container";
 import { AboutFlowLines, DotGrid } from "@/components/ui/Decorations";
-import { BrainIcon, BuildingIcon, CodeIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
+import { AchievementSection } from "@/components/sections/AchievementSection";
+import { EducationSection } from "@/components/sections/EducationSection";
 import { TechStackSection } from "@/components/sections/TechStackSection";
+import { ValueCards } from "@/components/sections/ValueCards";
 import { PortraitIllustration } from "@/components/visuals/PortraitIllustration";
-
-const values = [
-  {
-    label: "Problem Solving",
-    description:
-      "Menganalisis akar masalah dan mengubahnya menjadi solusi yang sederhana, tepat, dan mudah digunakan.",
-    Icon: BrainIcon,
-  },
-  {
-    label: "Full Stack Development",
-    description:
-      "Membangun aplikasi dari antarmuka hingga sistem backend dengan struktur yang rapi dan mudah dikembangkan.",
-    Icon: CodeIcon,
-  },
-  {
-    label: "Business Solutions",
-    description:
-      "Menerjemahkan kebutuhan operasional bisnis menjadi fitur digital yang efisien dan benar-benar bermanfaat.",
-    Icon: BuildingIcon,
-  },
-] as const;
 
 export function AboutSection() {
   return (
@@ -36,7 +17,7 @@ export function AboutSection() {
       <DotGrid className="absolute -left-4 bottom-24 hidden text-black md:grid" />
 
       <Container className="relative z-10">
-        <div className="mx-auto grid max-w-[1100px] items-center gap-12 lg:grid-cols-[320px_1fr]">
+        <div className="grid items-center gap-12 lg:grid-cols-[320px_1fr]">
           <Reveal direction="left">
             <PortraitIllustration />
           </Reveal>
@@ -61,8 +42,6 @@ export function AboutSection() {
           </Reveal>
         </div>
 
-        <TechStackSection />
-
         <Reveal
           delay={0.14}
           className="mx-auto mt-14 max-w-[850px] text-center"
@@ -73,31 +52,13 @@ export function AboutSection() {
           </p>
         </Reveal>
 
-        <div className="mx-auto mt-8 grid max-w-[820px] items-start gap-4 sm:grid-cols-3">
-          {values.map(({ label, description, Icon }, index) => (
-            <Reveal
-              key={label}
-              delay={0.08 * index}
-              className="relative sm:min-h-36 sm:hover:z-20 sm:focus-within:z-20"
-            >
-              <article
-                tabIndex={0}
-                className="group flex min-h-36 w-full cursor-default flex-col items-center justify-center overflow-hidden rounded-xl border border-black/60 bg-white p-5 text-center text-black transition-[background-color,color,box-shadow,transform] duration-500 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 sm:absolute sm:inset-x-0 sm:top-0 sm:cursor-pointer sm:hover:-translate-y-1 sm:hover:bg-black sm:hover:text-white sm:hover:shadow-xl sm:focus:-translate-y-1 sm:focus:bg-black sm:focus:text-white sm:focus:shadow-xl"
-              >
-                <Icon className="mb-4 size-9 transition-transform duration-500 group-hover:scale-110 group-focus:scale-110" />
-                <p className="text-sm font-bold">{label}</p>
+        <ValueCards />
 
-                <div className="grid grid-rows-[1fr] opacity-100 transition-[grid-template-rows,opacity] duration-500 ease-out sm:grid-rows-[0fr] sm:opacity-0 sm:group-hover:grid-rows-[1fr] sm:group-hover:opacity-100 sm:group-focus:grid-rows-[1fr] sm:group-focus:opacity-100">
-                  <div className="overflow-hidden">
-                    <p className="pt-4 text-xs leading-5 text-black/65 transition-colors duration-500 sm:group-hover:text-white/75 sm:group-focus:text-white/75">
-                      {description}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <TechStackSection />
+
+        <AchievementSection />
+
+        <EducationSection />
       </Container>
     </section>
   );

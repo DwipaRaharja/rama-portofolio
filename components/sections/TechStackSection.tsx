@@ -81,8 +81,9 @@ export function TechStackSection() {
 
   return (
     <motion.section
+      id="tech-stack"
       aria-labelledby="tech-stack-title"
-      className="mx-auto mt-16 max-w-[1100px] rounded-2xl border-2 border-black bg-white p-6 shadow-[0_18px_55px_-38px_rgba(0,0,0,0.35)] sm:p-8"
+      className="mt-16 scroll-mt-28 rounded-2xl border-2 border-black bg-white p-6 shadow-[0_18px_55px_-38px_rgba(0,0,0,0.35)] sm:p-8"
       variants={sectionVariants}
       initial={shouldReduceMotion ? "visible" : "hidden"}
       whileInView="visible"
