@@ -25,7 +25,7 @@ export function AchievementSection() {
     <section
       id="achievements"
       aria-labelledby="achievement-title"
-      className="mt-16 scroll-mt-28"
+      className="scroll-mt-28"
     >
       <Reveal className="max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/50">

@@ -54,11 +54,13 @@ export function AboutSection() {
 
         <ValueCards />
 
-        <TechStackSection />
+        <div className="mt-20 space-y-20 sm:mt-24 sm:space-y-24">
+          <TechStackSection />
 
-        <AchievementSection />
+          <AchievementSection />
 
-        <EducationSection />
+          <EducationSection />
+        </div>
       </Container>
     </section>
   );

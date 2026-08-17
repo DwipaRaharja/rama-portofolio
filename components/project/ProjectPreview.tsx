@@ -18,6 +18,7 @@ const accentStyles = {
 type ProjectPreviewProps = {
   project: Project;
   compact?: boolean;
+  detail?: boolean;
 };
 
 function MockScreen({ project }: { project: Project }) {
@@ -49,17 +50,27 @@ function MockScreen({ project }: { project: Project }) {
   );
 }
 
-export function ProjectPreview({ project, compact = false }: ProjectPreviewProps) {
+export function ProjectPreview({
+  project,
+  compact = false,
+  detail = false,
+}: ProjectPreviewProps) {
   const styles = accentStyles[project.accent];
 
   if (project.imageUrl) {
     return (
-      <div className="relative aspect-[2/1] w-full overflow-hidden rounded-xl border border-black/15 bg-[#111827] shadow-[0_12px_34px_-22px_rgba(0,0,0,0.45)]">
+      <div
+        className={`relative w-full overflow-hidden rounded-xl border border-black/15 bg-[#111827] shadow-[0_12px_34px_-22px_rgba(0,0,0,0.45)] ${
+          detail ? "aspect-[2/1] sm:aspect-[12/5] lg:aspect-[5/2]" : "aspect-[2/1]"
+        }`}
+      >
         <Image
           src={project.imageUrl}
           alt={project.imageAlt ?? `Tampilan project ${project.title}`}
           fill
           sizes={compact ? "(min-width: 1024px) 42vw, 90vw" : "(min-width: 1024px) 52vw, 90vw"}
+          loading={detail ? "eager" : undefined}
+          fetchPriority={detail ? "high" : undefined}
           className="object-cover object-top"
         />
       </div>

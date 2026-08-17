@@ -34,7 +34,10 @@ function FloatingIntroIcon({
   shouldReduceMotion,
 }: FloatingIntroIconProps) {
   return (
-    <div className={`pointer-events-none absolute ${className}`} aria-hidden="true">
+    <div
+      className={`pointer-events-none absolute ${className}`}
+      aria-hidden="true"
+    >
       <motion.div
         initial={
           shouldReduceMotion
@@ -123,7 +126,9 @@ export function PortfolioIntro() {
   };
 
   if (shouldShow === null) {
-    return <div className="fixed inset-0 z-[100] bg-black" aria-hidden="true" />;
+    return (
+      <div className="fixed inset-0 z-[100] bg-black" aria-hidden="true" />
+    );
   }
 
   return (
