@@ -16,6 +16,7 @@ import {
   RocketLaunchIcon,
   TargetIcon,
 } from "@/components/ui/Icons";
+import { SectionLabel } from "@/components/ui/Decorations";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -306,9 +307,7 @@ export function CallToActionSection() {
           className="flex h-full w-1/4 shrink-0 items-center justify-center px-6 motion-reduce:min-h-[75svh] motion-reduce:w-full sm:px-10"
         >
           <div data-process-intro className="max-w-[900px] text-center will-change-transform">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] sm:text-sm">
-              Siap Membangun
-            </p>
+            <SectionLabel>Siap Membangun</SectionLabel>
             <span className="mx-auto mt-4 block h-px w-16 bg-black" />
             <h2
               id="solution-process-title"

@@ -1,5 +1,9 @@
 import { Container } from "@/components/ui/Container";
-import { AboutFlowLines, DotGrid } from "@/components/ui/Decorations";
+import {
+  AboutFlowLines,
+  DotGrid,
+  SectionLabel,
+} from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 import { AchievementSection } from "@/components/sections/AchievementSection";
 import { EducationSection } from "@/components/sections/EducationSection";
@@ -23,10 +27,8 @@ export function AboutSection() {
           </Reveal>
 
           <Reveal direction="right" delay={0.08}>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/50">
-              Kenalan lebih dekat
-            </p>
-            <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.045em] sm:text-5xl">
+            <SectionLabel>Kenalan lebih dekat</SectionLabel>
+            <h2 className="text-4xl font-extrabold tracking-[-0.045em] sm:text-5xl">
               Tentang Saya
             </h2>
             <p className="mt-5 max-w-[760px] text-sm leading-7 text-black/65 sm:text-base">

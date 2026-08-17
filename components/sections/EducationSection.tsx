@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 
+import { SectionLabel } from "@/components/ui/Decorations";
 import { GraduationCapIcon, StudentIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -49,12 +50,10 @@ export function EducationSection() {
       className="scroll-mt-28"
     >
       <Reveal className="max-w-2xl">
-        <p className="text-xs font-semibold capitalize tracking-[0.2em] text-black/50">
-          Education
-        </p>
+        <SectionLabel>Education</SectionLabel>
         <h3
           id="education-title"
-          className="mt-3 text-3xl font-extrabold tracking-[-0.045em] sm:text-4xl"
+          className="text-3xl font-extrabold tracking-[-0.045em] sm:text-4xl"
         >
           Riwayat Pendidikan
         </h3>

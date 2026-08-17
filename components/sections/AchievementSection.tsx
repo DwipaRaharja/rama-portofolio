@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 
 import { BuildingIcon, CodeIcon } from "@/components/ui/Icons";
-import { DotGrid } from "@/components/ui/Decorations";
+import { DotGrid, SectionLabel } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
 
 const achievements = [
@@ -75,12 +75,10 @@ export function AchievementSection() {
       </motion.div>
 
       <Reveal className="max-w-2xl">
-        <p className="text-xs font-semibold capitalize tracking-[0.2em] text-black/50">
-          Achievements
-        </p>
+        <SectionLabel>Achievements</SectionLabel>
         <h3
           id="achievement-title"
-          className="mt-3 text-3xl font-extrabold tracking-[-0.045em] sm:text-4xl"
+          className="text-3xl font-extrabold tracking-[-0.045em] sm:text-4xl"
         >
           Pencapaian Saya
         </h3>

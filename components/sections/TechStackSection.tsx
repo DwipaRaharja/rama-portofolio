@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
+import { SectionLabel } from "@/components/ui/Decorations";
 import {
   CodeIcon,
   FlowArrowIcon,
@@ -90,12 +91,10 @@ export function TechStackSection() {
       viewport={{ once: true, amount: 0.12 }}
     >
       <motion.div variants={headerVariants} className="max-w-2xl">
-        <p className="text-xs font-semibold capitalize tracking-[0.2em] text-black/50">
-          Teknologi yang saya gunakan
-        </p>
+        <SectionLabel>Teknologi yang saya gunakan</SectionLabel>
         <h3
           id="tech-stack-title"
-          className="mt-3 text-3xl font-extrabold tracking-[-0.045em] sm:text-4xl"
+          className="text-3xl font-extrabold tracking-[-0.045em] sm:text-4xl"
         >
           Tech Stack Saya
         </h3>

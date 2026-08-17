@@ -4,10 +4,7 @@ type DecorationProps = {
 
 export function DotGrid({ className = "" }: DecorationProps) {
   return (
-    <div
-      aria-hidden="true"
-      className={`grid grid-cols-5 gap-2 ${className}`}
-    >
+    <div aria-hidden="true" className={`grid grid-cols-5 gap-2 ${className}`}>
       {Array.from({ length: 25 }, (_, index) => (
         <span key={index} className="size-1.5 rounded-full bg-current" />
       ))}
@@ -91,7 +88,10 @@ export function AboutFlowLines({ className = "" }: DecorationProps) {
 }
 
 export function SolutionContactFlowLines({ className = "" }: DecorationProps) {
-  const renderFlowLines = (horizontalSpacing: number, verticalSpacing: number) =>
+  const renderFlowLines = (
+    horizontalSpacing: number,
+    verticalSpacing: number,
+  ) =>
     Array.from({ length: 7 }, (_, index) => {
       const horizontalOffset = (index - 3) * horizontalSpacing;
       const verticalOffset = (index - 3) * verticalSpacing;
@@ -125,7 +125,7 @@ export function SolutionContactFlowLines({ className = "" }: DecorationProps) {
 
 export function SectionLabel({ children }: { children: string }) {
   return (
-    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-black/55">
+    <p className="mb-3 text-xs font-semibold capitalize tracking-[0.18em] text-black/55">
       {children}
     </p>
   );
