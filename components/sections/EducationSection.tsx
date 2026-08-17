@@ -18,7 +18,7 @@ const education = [
     number: "02",
     period: "2023 — Sekarang",
     institution: "ITB STIKOM Bali",
-    program: "Perguruan Tinggi",
+    program: "Jurusan Sistem Informasi",
     status: "Mahasiswa aktif",
     Icon: StudentIcon,
   },
@@ -49,7 +49,7 @@ export function EducationSection() {
       className="scroll-mt-28"
     >
       <Reveal className="max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/50">
+        <p className="text-xs font-semibold capitalize tracking-[0.2em] text-black/50">
           Education
         </p>
         <h3

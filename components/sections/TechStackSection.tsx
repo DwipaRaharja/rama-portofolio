@@ -27,7 +27,7 @@ const techStackGroups = [
   },
   {
     label: "Tools & Deployment",
-    technologies: ["Git", "GitHub", "Vercel"],
+    technologies: ["Git", "GitHub", "Figma", "Vercel"],
     Icon: RocketLaunchIcon,
   },
 ] as const;
@@ -90,7 +90,7 @@ export function TechStackSection() {
       viewport={{ once: true, amount: 0.12 }}
     >
       <motion.div variants={headerVariants} className="max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/50">
+        <p className="text-xs font-semibold capitalize tracking-[0.2em] text-black/50">
           Teknologi yang saya gunakan
         </p>
         <h3

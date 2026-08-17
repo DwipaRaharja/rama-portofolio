@@ -25,7 +25,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
     const previouslyFocusedElement =
-      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
 
     document.body.style.overflow = "hidden";
     const focusFrame = window.requestAnimationFrame(() => {
@@ -40,9 +42,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
       if (event.key !== "Tab") return;
 
-      const focusableElements = dialogRef.current?.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      );
+      const focusableElements =
+        dialogRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        );
 
       if (!focusableElements?.length) return;
 
@@ -86,7 +89,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: shouldReduceMotion ? 0 : 8 }}
-        transition={{ duration: shouldReduceMotion ? 0 : 0.24, ease: smoothEase }}
+        transition={{
+          duration: shouldReduceMotion ? 0 : 0.24,
+          ease: smoothEase,
+        }}
         className="relative max-h-[calc(100dvh-1rem)] w-full max-w-[1180px] cursor-default overflow-y-auto overscroll-contain rounded-[1.4rem] border-2 border-black bg-white shadow-[0_32px_90px_-28px_rgba(0,0,0,0.65)] transform-gpu sm:max-h-[calc(100dvh-2.5rem)]"
       >
         <motion.header
@@ -129,9 +135,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           <div className="relative mt-8 max-w-4xl sm:mt-10">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-black/45">
-              {project.eyebrow}
-            </p>
             <h2
               id="project-dialog-title"
               className="mt-3 text-4xl font-extrabold tracking-[-0.055em] sm:text-5xl lg:text-6xl"
@@ -182,7 +185,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           >
             <section className="rounded-2xl border border-black/20 bg-white p-5 sm:p-7">
               <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-black/40">
-                01 · Tentang Project
+                Tentang Project
               </p>
               <h3 className="mt-3 text-3xl font-extrabold tracking-[-0.045em]">
                 Ringkasan
@@ -198,10 +201,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               </h3>
               <ul className="mt-4 space-y-3">
                 {project.outcomes.map((outcome) => (
-                  <li key={outcome} className="flex items-start gap-3 text-sm leading-6 text-black/65">
-                    <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-black text-white">
-                      <CheckIcon className="size-3" />
-                    </span>
+                  <li
+                    key={outcome}
+                    className="flex items-start gap-3 text-sm leading-6 text-black/65"
+                  >
+                    <CheckIcon className="mt-0.5 size-5 shrink-0 text-black" />
                     {outcome}
                   </li>
                 ))}
@@ -211,14 +215,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             <div className="grid gap-5">
               <section className="rounded-2xl border border-black/20 bg-white p-5 sm:p-7">
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-black/40">
-                  02 · Yang Dibangun
+                  Yang Dibangun
                 </p>
                 <h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em]">
                   Fitur Utama
                 </h3>
                 <ol className="mt-5 space-y-4">
                   {project.features.map((feature, index) => (
-                    <li key={feature} className="flex items-start gap-4 text-sm leading-6 text-black/65">
+                    <li
+                      key={feature}
+                      className="flex items-start gap-4 text-sm leading-6 text-black/65"
+                    >
                       <span className="font-extrabold text-black/35">
                         {String(index + 1).padStart(2, "0")}
                       </span>
@@ -230,7 +237,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
               <section className="rounded-2xl border border-black/20 bg-white p-5 sm:p-7">
                 <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-black/40">
-                  03 · Teknologi
+                  Teknologi
                 </p>
                 <h3 className="mt-3 text-2xl font-extrabold tracking-[-0.04em]">
                   Tech Stack
@@ -257,14 +264,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               delay: shouldReduceMotion ? 0 : 0.18,
               ease: smoothEase,
             }}
-            className="mt-5 flex flex-col gap-5 rounded-2xl bg-black p-5 text-white transform-gpu sm:flex-row sm:items-center sm:justify-between sm:p-7"
+            className="mt-5 flex flex-col gap-5 rounded-2xl border border-black/20 bg-white p-5 text-black transform-gpu sm:flex-row sm:items-center sm:justify-between sm:p-7"
           >
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">
+              <p className="text-sm font-extrabold capitalize tracking-[-0.02em] text-black">
                 Jelajahi Project
               </p>
-              <p className="mt-2 max-w-md text-sm leading-6 text-white/70">
-                Lihat hasil akhirnya atau pelajari struktur source code project ini.
+              <p className="mt-2 max-w-md text-sm leading-6 text-black/60">
+                Lihat hasil akhirnya atau pelajari struktur source code project
+                ini.
               </p>
             </div>
 
@@ -274,7 +282,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center justify-center gap-3 rounded-lg bg-white px-4 text-sm font-bold text-black transition-transform hover:-translate-y-0.5"
+                  className="inline-flex h-12 items-center justify-center gap-3 rounded-lg bg-black px-4 text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
                 >
                   <ArrowUpRightIcon className="size-5" />
                   Lihat Website
@@ -286,7 +294,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 target={project.repositoryUrl ? "_blank" : undefined}
                 rel={project.repositoryUrl ? "noopener noreferrer" : undefined}
                 onClick={project.repositoryUrl ? undefined : onClose}
-                className="inline-flex h-12 items-center justify-center gap-3 rounded-lg border border-white/35 px-4 text-sm font-bold text-white transition-colors hover:bg-white hover:text-black"
+                className="inline-flex h-12 items-center justify-center gap-3 rounded-lg border border-black/40 px-4 text-sm font-bold text-black transition-colors hover:bg-black hover:text-white"
               >
                 <GithubIcon className="size-5" />
                 {project.repositoryUrl ? "Buka GitHub" : "Diskusikan Project"}
