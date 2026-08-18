@@ -2,7 +2,6 @@ export const navigationItems = [
   { label: "Beranda", href: "#home" },
   { label: "Tentang Saya", href: "#about" },
   { label: "Tech Stack", href: "#tech-stack" },
-  { label: "Pencapaian", href: "#achievements" },
   { label: "Pendidikan", href: "#education" },
   { label: "Portofolio", href: "#portfolio" },
 ] as const;

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, type Variants } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { ArrowUpRightIcon, CloseIcon, MenuIcon } from "@/components/ui/Icons";
@@ -43,6 +44,7 @@ const navigationItemVariants: Variants = {
 };
 
 export function Navbar() {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isIntroComplete, setIsIntroComplete] = useState(false);
@@ -59,6 +61,10 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (pathname !== "/") {
+      return;
+    }
+
     const sectionIds = [
       ...navigationItems.map((item) => item.href.slice(1)),
       "solution",
@@ -83,10 +89,12 @@ export function Navbar() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   const closeMenu = () => setIsMenuOpen(false);
-  const isContactActive = activeSection === "contact";
+  const isHomePage = pathname === "/";
+  const getSectionHref = (href: string) => (isHomePage ? href : `/${href}`);
+  const isContactActive = isHomePage && activeSection === "contact";
 
   return (
     <motion.header
@@ -100,10 +108,10 @@ export function Navbar() {
         variants={navigationVariants}
       >
         <motion.a
-          href="#home"
+          href={getSectionHref("#home")}
           onClick={closeMenu}
           variants={navigationItemVariants}
-          className="text-lg font-extrabold tracking-[-0.04em] sm:text-xl"
+          className="interactive-transition text-lg font-extrabold tracking-[-0.04em] hover:opacity-60 sm:text-xl"
         >
           Ramadwipa.
         </motion.a>
@@ -114,21 +122,21 @@ export function Navbar() {
         >
           {navigationItems.map((item) => {
             const sectionId = item.href.slice(1);
-            const isActive = activeSection === sectionId;
+            const isActive = isHomePage && activeSection === sectionId;
 
             return (
               <motion.a
                 key={item.href}
-                href={item.href}
+                href={getSectionHref(item.href)}
                 aria-current={isActive ? "location" : undefined}
                 variants={navigationItemVariants}
-                className={`relative py-4 text-sm font-semibold transition-colors ${
+                className={`interactive-transition relative py-4 text-sm font-semibold ${
                   isActive ? "text-black" : "text-black/60 hover:text-black"
                 }`}
               >
                 {item.label}
                 <span
-                  className={`absolute inset-x-0 bottom-0 h-0.5 origin-left bg-black transition-transform ${
+                  className={`interactive-transition absolute inset-x-0 bottom-0 h-0.5 origin-left bg-black ${
                     isActive ? "scale-x-100" : "scale-x-0"
                   }`}
                 />
@@ -137,10 +145,10 @@ export function Navbar() {
           })}
 
           <motion.a
-            href="#contact"
+            href={getSectionHref("#contact")}
             aria-current={isContactActive ? "location" : undefined}
             variants={navigationItemVariants}
-            className={`inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white transition-[transform,box-shadow] hover:-translate-y-0.5 ${
+            className={`interactive-transition inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-bold text-white hover:-translate-y-0.5 ${
               isContactActive
                 ? "-translate-y-0.5 shadow-[0_0_0_4px_rgba(0,0,0,0.14)]"
                 : "shadow-none"
@@ -157,7 +165,7 @@ export function Navbar() {
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((current) => !current)}
           variants={navigationItemVariants}
-          className="grid size-10 place-items-center rounded-lg border border-black/20 lg:hidden"
+          className="interactive-transition grid size-10 place-items-center rounded-lg border border-black/20 hover:bg-black hover:text-white lg:hidden"
         >
           {isMenuOpen ? (
             <CloseIcon className="size-5" />
@@ -178,15 +186,15 @@ export function Navbar() {
           >
             {navigationItems.map((item) => {
               const sectionId = item.href.slice(1);
-              const isActive = activeSection === sectionId;
+              const isActive = isHomePage && activeSection === sectionId;
 
               return (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={getSectionHref(item.href)}
                   onClick={closeMenu}
                   aria-current={isActive ? "location" : undefined}
-                  className={`block rounded-lg px-4 py-3 text-sm font-semibold transition-colors ${
+                  className={`interactive-transition block rounded-lg px-4 py-3 text-sm font-semibold ${
                     isActive
                       ? "bg-black text-white"
                       : "hover:bg-black hover:text-white"
@@ -197,10 +205,10 @@ export function Navbar() {
               );
             })}
             <a
-              href="#contact"
+              href={getSectionHref("#contact")}
               onClick={closeMenu}
               aria-current={isContactActive ? "location" : undefined}
-              className={`mt-2 flex items-center justify-between rounded-lg bg-black px-4 py-3 text-sm font-bold text-white transition-shadow ${
+              className={`interactive-transition mt-2 flex items-center justify-between rounded-lg bg-black px-4 py-3 text-sm font-bold text-white ${
                 isContactActive
                   ? "shadow-[0_0_0_3px_rgba(0,0,0,0.16)]"
                   : "shadow-none"

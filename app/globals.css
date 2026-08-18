@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #050505;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -70,6 +71,22 @@ a {
     0 1px 2px rgb(5 5 5 / 8%),
     0 12px 30px -18px rgb(5 5 5 / 20%),
     0 30px 70px -42px rgb(5 5 5 / 24%);
+}
+
+.interactive-transition {
+  transition-property:
+    color, background-color, border-color, box-shadow, transform, translate,
+    scale, rotate, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: var(--ease-smooth);
+}
+
+.surface-transition {
+  transition-property:
+    color, background-color, border-color, box-shadow, transform, translate,
+    scale, rotate, opacity;
+  transition-duration: 500ms;
+  transition-timing-function: var(--ease-smooth);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,19 +1,9 @@
-"use client";
-
-import { AnimatePresence } from "motion/react";
-import { useCallback, useState } from "react";
-
 import { ProjectCard } from "@/components/project/ProjectCard";
-import { ProjectModal } from "@/components/project/ProjectModal";
 import { Container } from "@/components/ui/Container";
 import { CornerFlowLines, DotGrid, SectionLabel } from "@/components/ui/Decorations";
 import { projects } from "@/data/projects";
-import type { Project } from "@/types/project";
 
 export function PortfolioSection() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const closeProject = useCallback(() => setSelectedProject(null), []);
-
   return (
     <section id="portfolio" className="scroll-mt-28 py-16 sm:py-24">
       <Container>
@@ -34,22 +24,12 @@ export function PortfolioSection() {
 
           <div className="relative z-10 mt-10 grid gap-6 lg:grid-cols-2">
             {projects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-                onSelect={setSelectedProject}
-              />
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
         </div>
       </Container>
 
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal project={selectedProject} onClose={closeProject} />
-        )}
-      </AnimatePresence>
     </section>
   );
 }

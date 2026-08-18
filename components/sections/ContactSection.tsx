@@ -10,7 +10,7 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 import { siteConfig } from "@/data/site";
 
 const fieldClassName =
-  "h-11 w-full rounded-md border border-black/45 bg-white px-3 text-sm outline-none transition focus:border-black focus:ring-2 focus:ring-black/10";
+  "interactive-transition h-11 w-full rounded-md border border-black/45 bg-white px-3 text-sm outline-none focus:border-black focus:ring-2 focus:ring-black/10";
 
 const formVariants: Variants = {
   hidden: {},
@@ -107,7 +107,7 @@ export function ContactSection() {
                     autoComplete="name"
                     required
                     whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </motion.label>
                 <motion.label variants={fieldVariants} className="text-sm font-semibold">
@@ -120,7 +120,7 @@ export function ContactSection() {
                     autoComplete="tel"
                     required
                     whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </motion.label>
                 <motion.label variants={fieldVariants} className="text-sm font-semibold">
@@ -133,7 +133,7 @@ export function ContactSection() {
                     autoComplete="email"
                     required
                     whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </motion.label>
                 <motion.label variants={fieldVariants} className="text-sm font-semibold">
@@ -145,7 +145,7 @@ export function ContactSection() {
                     placeholder="Input nama bisnis (opsional)"
                     autoComplete="organization"
                     whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.005 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </motion.label>
               </div>
@@ -153,22 +153,22 @@ export function ContactSection() {
               <motion.label variants={fieldVariants} className="mt-5 block text-sm font-semibold">
                 Apa yang bisa kita buat?
                 <motion.textarea
-                  className="mt-2 min-h-40 w-full resize-y rounded-md border border-black/45 bg-white p-3 text-sm outline-none transition focus:border-black focus:ring-2 focus:ring-black/10"
+                  className="interactive-transition mt-2 min-h-40 w-full resize-y rounded-md border border-black/45 bg-white p-3 text-sm outline-none focus:border-black focus:ring-2 focus:ring-black/10"
                   name="message"
                   placeholder="Ceritakan kebutuhan atau ide project kamu"
                   required
                   whileFocus={shouldReduceMotion ? undefined : { y: -2, scale: 1.003 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 />
               </motion.label>
 
               <motion.div variants={fieldVariants} className="mt-7 text-center">
                 <motion.button
                   type="submit"
-                  className="inline-flex h-12 items-center gap-2 rounded-lg bg-black px-5 text-sm font-bold text-white"
+                  className="interactive-transition inline-flex h-12 items-center gap-2 rounded-lg bg-black px-5 text-sm font-bold text-white hover:shadow-lg"
                   whileHover={shouldReduceMotion ? undefined : { y: -3 }}
                   whileTap={shouldReduceMotion ? undefined : { scale: 0.97 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
                   Kirim via WhatsApp
                   <WhatsappIcon className="size-4" />

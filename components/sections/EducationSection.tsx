@@ -191,31 +191,33 @@ export function EducationSection() {
                 },
               }}
             >
-              <article className="group flex min-h-72 flex-col rounded-2xl border border-black/30 bg-white p-6 transition-[background-color,color,transform,box-shadow] duration-500 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-xl sm:p-7">
-                <div className="flex items-start justify-between gap-4">
-                  <span className="text-xs font-extrabold tracking-[0.16em] text-black/40 transition-colors duration-500 group-hover:text-white/45">
-                    {number}
-                  </span>
-                  <div className="grid size-12 place-items-center rounded-full border border-black/25 transition-[border-color,transform] duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110 group-hover:border-white/35">
-                    <Icon className="size-6" />
+              <div className="group/education">
+                <article className="surface-transition flex min-h-72 transform-gpu flex-col rounded-2xl border border-black/30 bg-white p-6 will-change-transform group-hover/education:-translate-y-1 group-hover/education:bg-black group-hover/education:text-white group-hover/education:shadow-xl sm:p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="surface-transition text-xs font-extrabold tracking-[0.16em] text-black/40 group-hover/education:text-white/45">
+                      {number}
+                    </span>
+                    <div className="surface-transition grid size-12 place-items-center rounded-full border border-black/25 group-hover/education:-rotate-6 group-hover/education:scale-110 group-hover/education:border-white/35">
+                      <Icon className="size-6" />
+                    </div>
                   </div>
-                </div>
 
-                <div className="mt-auto pt-10">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-black/45 transition-colors duration-500 group-hover:text-white/45">
-                    {period}
-                  </p>
-                  <h4 className="mt-3 text-2xl font-extrabold tracking-[-0.045em] sm:text-[1.65rem]">
-                    {institution}
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-black/60 transition-colors duration-500 group-hover:text-white/60">
-                    {program}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold text-black/40 transition-colors duration-500 group-hover:text-white/45">
-                    {status}
-                  </p>
-                </div>
-              </article>
+                  <div className="mt-auto pt-10">
+                    <p className="surface-transition text-[10px] font-bold uppercase tracking-[0.14em] text-black/45 group-hover/education:text-white/45">
+                      {period}
+                    </p>
+                    <h4 className="mt-3 text-2xl font-extrabold tracking-[-0.045em] sm:text-[1.65rem]">
+                      {institution}
+                    </h4>
+                    <p className="surface-transition mt-2 text-sm leading-6 text-black/60 group-hover/education:text-white/60">
+                      {program}
+                    </p>
+                    <p className="surface-transition mt-1 text-xs font-semibold text-black/40 group-hover/education:text-white/45">
+                      {status}
+                    </p>
+                  </div>
+                </article>
+              </div>
             </motion.div>
           ),
         )}

@@ -5,7 +5,6 @@ import {
   SectionLabel,
 } from "@/components/ui/Decorations";
 import { Reveal } from "@/components/ui/Reveal";
-import { AchievementSection } from "@/components/sections/AchievementSection";
 import { EducationSection } from "@/components/sections/EducationSection";
 import { TechStackSection } from "@/components/sections/TechStackSection";
 import { ValueCards } from "@/components/sections/ValueCards";
@@ -58,8 +57,6 @@ export function AboutSection() {
 
         <div className="mt-20 space-y-20 sm:mt-24 sm:space-y-24">
           <TechStackSection />
-
-          <AchievementSection />
 
           <EducationSection />
         </div>

@@ -41,7 +41,7 @@ export function ValueCards() {
         return (
           <div
             key={label}
-            className="min-w-0 transition-[flex-grow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:basis-0"
+            className="min-w-0 transition-[flex-grow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:basis-0"
             style={{ flexGrow }}
             onMouseEnter={() => setActiveIndex(index)}
             onFocusCapture={() => setActiveIndex(index)}
@@ -54,14 +54,14 @@ export function ValueCards() {
             <Reveal delay={0.08 * index} className="h-full">
               <article
                 tabIndex={0}
-                className="group flex h-full min-h-44 w-full cursor-default flex-col items-center justify-center overflow-hidden rounded-xl border border-black/60 bg-white p-5 text-center text-black transition-[background-color,color,box-shadow] duration-500 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 lg:min-h-0 lg:cursor-pointer lg:hover:bg-black lg:hover:text-white lg:hover:shadow-xl lg:focus:bg-black lg:focus:text-white lg:focus:shadow-xl"
+                className="surface-transition group flex h-full min-h-44 w-full cursor-default flex-col items-center justify-center overflow-hidden rounded-xl border border-black/60 bg-white p-5 text-center text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 lg:min-h-0 lg:cursor-pointer lg:hover:bg-black lg:hover:text-white lg:hover:shadow-xl lg:focus:bg-black lg:focus:text-white lg:focus:shadow-xl"
               >
-                <Icon className="mb-4 size-9 shrink-0 transition-transform duration-500 group-hover:scale-110 group-focus:scale-110" />
+                <Icon className="surface-transition mb-4 size-9 shrink-0 group-hover:scale-110 group-focus:scale-110" />
                 <p className="text-sm font-bold">{label}</p>
 
-                <div className="grid grid-rows-[1fr] opacity-100 transition-[grid-template-rows,opacity] duration-500 ease-out lg:grid-rows-[0fr] lg:opacity-0 lg:group-hover:grid-rows-[1fr] lg:group-hover:opacity-100 lg:group-focus:grid-rows-[1fr] lg:group-focus:opacity-100">
+                <div className="grid grid-rows-[1fr] opacity-100 transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:grid-rows-[0fr] lg:opacity-0 lg:group-hover:grid-rows-[1fr] lg:group-hover:opacity-100 lg:group-focus:grid-rows-[1fr] lg:group-focus:opacity-100">
                   <div className="overflow-hidden">
-                    <p className="max-w-md pt-4 text-xs leading-5 text-black/65 transition-colors duration-500 lg:group-hover:text-white/75 lg:group-focus:text-white/75">
+                    <p className="surface-transition max-w-md pt-4 text-xs leading-5 text-black/65 lg:group-hover:text-white/75 lg:group-focus:text-white/75">
                       {description}
                     </p>
                   </div>

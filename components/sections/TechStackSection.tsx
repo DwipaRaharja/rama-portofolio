@@ -112,22 +112,24 @@ export function TechStackSection() {
           <motion.article
             key={label}
             variants={cardVariants}
-            className="group rounded-xl border border-black/25 bg-white p-5 transition-[background-color,color,transform,box-shadow] duration-500 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-xl"
+            className="group/technology h-full"
           >
-            <div className="grid size-11 place-items-center rounded-lg border border-black/20 transition-[border-color,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6 group-hover:scale-110 group-hover:border-white/35">
-              <Icon className="size-6" />
-            </div>
-            <h4 className="mt-5 text-sm font-extrabold">{label}</h4>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {technologies.map((technology, index) => (
-                <span
-                  key={technology}
-                  className="rounded-md border border-black/20 bg-black/[0.02] px-2.5 py-1.5 text-[11px] font-semibold transition-[background-color,border-color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:border-white/30 group-hover:bg-white/10"
-                  style={{ transitionDelay: `${index * 35}ms` }}
-                >
-                  {technology}
-                </span>
-              ))}
+            <div className="surface-transition h-full transform-gpu rounded-xl border border-black/25 bg-white p-5 will-change-transform group-hover/technology:-translate-y-1 group-hover/technology:bg-black group-hover/technology:text-white group-hover/technology:shadow-xl">
+              <div className="surface-transition grid size-11 place-items-center rounded-lg border border-black/20 group-hover/technology:-rotate-6 group-hover/technology:scale-110 group-hover/technology:border-white/35">
+                <Icon className="size-6" />
+              </div>
+              <h4 className="mt-5 text-sm font-extrabold">{label}</h4>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {technologies.map((technology, index) => (
+                  <span
+                    key={technology}
+                    className="interactive-transition rounded-md border border-black/20 bg-black/[0.02] px-2.5 py-1.5 text-[11px] font-semibold group-hover/technology:-translate-y-0.5 group-hover/technology:border-white/30 group-hover/technology:bg-white/10"
+                    style={{ transitionDelay: `${index * 35}ms` }}
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.article>
         ))}

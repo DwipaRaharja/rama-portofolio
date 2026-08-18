@@ -1,14 +1,17 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import { usePathname } from "next/navigation";
 
 import { Container } from "@/components/ui/Container";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { navigationItems, siteConfig } from "@/data/site";
 
 export function Footer() {
+  const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
   const revealOffset = shouldReduceMotion ? 0 : 42;
+  const getSectionHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
   return (
     <footer className="overflow-hidden bg-black pb-6 pt-14 text-white">
@@ -43,11 +46,18 @@ export function Footer() {
             <p className="mb-4 font-bold">Navigasi</p>
             <div className="space-y-2 text-sm text-white/60">
               {navigationItems.map((item) => (
-                <a key={item.href} href={item.href} className="block hover:text-white">
+                <a
+                  key={item.href}
+                  href={getSectionHref(item.href)}
+                  className="interactive-transition block hover:text-white"
+                >
                   {item.label}
                 </a>
               ))}
-              <a href="#contact" className="block hover:text-white">
+              <a
+                href={getSectionHref("#contact")}
+                className="interactive-transition block hover:text-white"
+              >
                 Kontak Saya
               </a>
             </div>

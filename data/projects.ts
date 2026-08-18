@@ -51,3 +51,7 @@ export const projects: Project[] = [
     accent: "violet",
   },
 ];
+
+export function getProjectById(id: string) {
+  return projects.find((project) => project.id === id);
+}

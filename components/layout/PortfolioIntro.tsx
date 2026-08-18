@@ -259,7 +259,7 @@ export function PortfolioIntro() {
           <motion.button
             type="button"
             onClick={closeIntro}
-            className="absolute bottom-5 right-5 rounded-full border border-white/30 px-4 py-2 text-xs font-semibold text-white/65 transition-colors hover:border-white hover:text-white sm:bottom-8 sm:right-8"
+            className="interactive-transition absolute bottom-5 right-5 rounded-full border border-white/30 px-4 py-2 text-xs font-semibold text-white/65 hover:border-white hover:text-white sm:bottom-8 sm:right-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.35, delay: 1.1 }}

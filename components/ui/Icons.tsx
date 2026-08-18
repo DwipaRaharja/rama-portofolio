@@ -1,4 +1,5 @@
 export {
+  ArrowLeftIcon,
   ArrowRightIcon,
   ArrowUpRightIcon,
   BrainIcon,
