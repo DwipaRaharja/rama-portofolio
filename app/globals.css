@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #050505;
+  --background: #050505;
+  --foreground: #ffffff;
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -18,6 +18,7 @@
 
 html {
   background: var(--background);
+  color-scheme: dark;
   scrollbar-gutter: stable;
 }
 
@@ -62,15 +63,15 @@ a {
 }
 
 ::selection {
-  background: #050505;
-  color: #ffffff;
+  background: #ffffff;
+  color: #050505;
 }
 
 .section-card-shadow {
   box-shadow:
-    0 1px 2px rgb(5 5 5 / 8%),
-    0 12px 30px -18px rgb(5 5 5 / 20%),
-    0 30px 70px -42px rgb(5 5 5 / 24%);
+    0 1px 2px rgba(255, 255, 255, 0.04),
+    0 24px 50px -20px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .interactive-transition {

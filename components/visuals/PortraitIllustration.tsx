@@ -8,7 +8,7 @@ export function PortraitIllustration() {
 
   return (
     <motion.div
-      className="relative mx-auto aspect-square w-full max-w-[285px] overflow-hidden rounded-full border-2 border-black bg-white shadow-[0_18px_45px_-24px_rgba(0,0,0,0.45)] will-change-transform"
+      className="relative mx-auto aspect-square w-full max-w-[285px] overflow-hidden rounded-full border-2 border-white/20 bg-[#121215] shadow-[0_18px_45px_-24px_rgba(255,255,255,0.12),0_0_30px_rgba(255,255,255,0.03)] will-change-transform"
       animate={
         shouldReduceMotion
           ? undefined
@@ -22,7 +22,7 @@ export function PortraitIllustration() {
     >
       <Image
         src="/asset/image/ramadwipa-profile.png"
-        alt="Ilustrasi potret Ramadwipa bergaya sketsa hitam putih"
+        alt="Portrait illustration of Ramadwipa in black and white sketch style"
         fill
         sizes="(max-width: 640px) 285px, 320px"
         className="object-cover object-[center_24%]"

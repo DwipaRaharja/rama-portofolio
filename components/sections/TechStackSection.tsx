@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 
+import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/Decorations";
 import {
   CodeIcon,
@@ -33,23 +34,24 @@ const techStackGroups = [
   },
 ] as const;
 
+// 1. Kontainer Luar Utama
 const sectionVariants: Variants = {
-  hidden: { opacity: 0, y: 48, scale: 0.985 },
+  hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.65,
-      delay: 0.05,
+      duration: 0.6,
       ease: [0.22, 1, 0.36, 1],
       when: "beforeChildren",
+      staggerChildren: 0.15,
     },
   },
 };
 
+// 2. Header
 const headerVariants: Variants = {
-  hidden: { opacity: 0, y: 26 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
@@ -57,23 +59,77 @@ const headerVariants: Variants = {
   },
 };
 
-const cardsVariants: Variants = {
+// 3. Grid Kartu
+const cardsContainerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      delayChildren: 0.03,
-      staggerChildren: 0.05,
+      staggerChildren: 0.12,
     },
   },
 };
 
+// 4. Fase 1: Card meluncur naik dari bawah ke posisinya
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 38, scale: 0.96 },
+  hidden: { opacity: 0, y: 48, scale: 0.96 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+      when: "beforeChildren", // Tunggu boks kartu mendarat dulu!
+      staggerChildren: 0.08, // Setelah kartu mendarat, picu kemunculan isi di dalamnya
+    },
+  },
+};
+
+// 5. Fase 2: Ikon pop-in
+const iconVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.5, rotate: -15 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.34, 1.56, 0.64, 1],
+    },
+  },
+};
+
+// 6. Fase 2: Judul kategori
+const titleVariants: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+// 7. Fase 2: Kontainer Badges
+const badgesContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+// 8. Fase 2: Badge teknologi meluncur & mekar satu per satu
+const badgeVariants: Variants = {
+  hidden: { opacity: 0, y: 14, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.35,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
 
@@ -81,59 +137,83 @@ export function TechStackSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <motion.section
+    <section
       id="tech-stack"
-      aria-labelledby="tech-stack-title"
-      className="scroll-mt-28 rounded-2xl border-2 border-black bg-white p-6 shadow-[0_18px_55px_-38px_rgba(0,0,0,0.35)] sm:p-8"
-      variants={sectionVariants}
-      initial={shouldReduceMotion ? "visible" : "hidden"}
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.12 }}
+      className="relative scroll-mt-24 pb-20 pt-6 text-white sm:pb-24 sm:pt-8 lg:pb-28"
     >
-      <motion.div variants={headerVariants} className="max-w-2xl">
-        <SectionLabel>Teknologi yang saya gunakan</SectionLabel>
-        <h3
-          id="tech-stack-title"
-          className="text-3xl font-extrabold tracking-[-0.045em] sm:text-4xl"
+      <Container>
+        <motion.div
+          aria-labelledby="tech-stack-title"
+          className="rounded-2xl border border-white/12 bg-[#0e0e11] p-6 text-white shadow-[0_18px_55px_-38px_rgba(0,0,0,0.85)] sm:p-8 lg:p-10"
+          variants={sectionVariants}
+          initial={shouldReduceMotion ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.12 }}
         >
-          Tech Stack Saya
-        </h3>
-        <p className="mt-3 text-sm leading-6 text-black/60">
-          Teknologi yang saya gunakan untuk membangun aplikasi web dari
-          antarmuka, backend, pengelolaan data, hingga deployment.
-        </p>
-      </motion.div>
+          <motion.div variants={headerVariants} className="max-w-2xl">
+            <SectionLabel>Technologies I use</SectionLabel>
+            <h3
+              id="tech-stack-title"
+              className="text-3xl font-extrabold tracking-[-0.045em] text-white sm:text-4xl"
+            >
+              My Tech Stack
+            </h3>
+            <p className="mt-3 text-sm leading-6 text-zinc-400">
+              Technologies and tools I leverage to build robust web applications
+              from frontend interfaces and backend APIs to database management
+              and cloud deployment.
+            </p>
+          </motion.div>
 
-      <motion.div
-        variants={cardsVariants}
-        className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-      >
-        {techStackGroups.map(({ label, technologies, Icon }) => (
-          <motion.article
-            key={label}
-            variants={cardVariants}
-            className="group/technology h-full"
+          <motion.div
+            variants={cardsContainerVariants}
+            className="mt-8 grid gap-5 sm:grid-cols-2"
           >
-            <div className="surface-transition h-full transform-gpu rounded-xl border border-black/25 bg-white p-5 will-change-transform group-hover/technology:-translate-y-1 group-hover/technology:bg-black group-hover/technology:text-white group-hover/technology:shadow-xl">
-              <div className="surface-transition grid size-11 place-items-center rounded-lg border border-black/20 group-hover/technology:-rotate-6 group-hover/technology:scale-110 group-hover/technology:border-white/35">
-                <Icon className="size-6" />
-              </div>
-              <h4 className="mt-5 text-sm font-extrabold">{label}</h4>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {technologies.map((technology, index) => (
-                  <span
-                    key={technology}
-                    className="interactive-transition rounded-md border border-black/20 bg-black/[0.02] px-2.5 py-1.5 text-[11px] font-semibold group-hover/technology:-translate-y-0.5 group-hover/technology:border-white/30 group-hover/technology:bg-white/10"
-                    style={{ transitionDelay: `${index * 35}ms` }}
+            {techStackGroups.map(({ label, technologies, Icon }) => (
+              <motion.article
+                key={label}
+                variants={cardVariants}
+                className="group/technology h-full"
+              >
+                <div className="surface-transition h-full transform-gpu rounded-xl border border-white/15 bg-[#121215] p-6 will-change-transform group-hover/technology:-translate-y-1 group-hover/technology:border-white/40 group-hover/technology:bg-[#18181c] group-hover/technology:shadow-2xl sm:p-7">
+                  {/* Fase 2: Ikon Pop-in */}
+                  <motion.div
+                    variants={iconVariants}
+                    className="surface-transition grid size-12 place-items-center rounded-lg border border-white/20 bg-[#18181c] text-white group-hover/technology:border-white/50 group-hover/technology:bg-[#1e1e24] group-hover/technology:shadow-[0_0_15px_rgba(255,255,255,0.08)]"
                   >
-                    {technology}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.article>
-        ))}
-      </motion.div>
-    </motion.section>
+                    <Icon className="surface-transition size-6 group-hover/technology:scale-115 group-hover/technology:-rotate-12" />
+                  </motion.div>
+
+                  {/* Fase 2: Judul Kategori */}
+                  <motion.h4
+                    variants={titleVariants}
+                    className="mt-5 text-base font-extrabold text-white sm:text-lg"
+                  >
+                    {label}
+                  </motion.h4>
+
+                  {/* Fase 2: Badges Cascade In */}
+                  <motion.div
+                    variants={badgesContainerVariants}
+                    className="mt-4 flex flex-wrap gap-2.5 sm:gap-3"
+                  >
+                    {technologies.map((technology, index) => (
+                      <motion.span
+                        key={technology}
+                        variants={badgeVariants}
+                        className="inline-flex transform-gpu rounded-lg border border-white/15 bg-white/[0.04] px-3.5 py-2 text-xs font-semibold text-zinc-200 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/technology:-translate-y-2 group-hover/technology:scale-[1.04] group-hover/technology:border-white/35 group-hover/technology:bg-white/10 group-hover/technology:text-white group-hover/technology:shadow-[0_6px_16px_rgba(0,0,0,0.5),0_0_12px_rgba(255,255,255,0.06)] hover:!scale-110 hover:!-translate-y-3 hover:!border-white/60 hover:!bg-white/20 sm:text-sm"
+                        style={{ transitionDelay: `${index * 85}ms` }}
+                      >
+                        {technology}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </motion.div>
+      </Container>
+    </section>
   );
 }

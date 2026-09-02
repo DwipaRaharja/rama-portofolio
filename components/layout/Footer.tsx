@@ -14,7 +14,7 @@ export function Footer() {
   const getSectionHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
   return (
-    <footer className="overflow-hidden bg-black pb-6 pt-14 text-white">
+    <footer className="overflow-hidden border-t border-white/10 bg-[#050505] pb-8 pt-16 text-white sm:pt-20">
       <Container>
         <div className="grid gap-10 md:grid-cols-[1fr_.8fr_1fr]">
           <motion.div
@@ -27,9 +27,9 @@ export function Footer() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <p className="text-xl font-extrabold tracking-[-0.04em]">{siteConfig.name}.</p>
-            <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-white/55">
-              Membangun aplikasi web yang rapi, fungsional, dan benar-benar berguna.
+            <p className="text-xl font-extrabold tracking-[-0.04em] text-white">{siteConfig.name}.</p>
+            <p className="mt-2 max-w-[220px] text-sm leading-relaxed text-zinc-400">
+              Building clean, functional, and impactful web applications.
             </p>
           </motion.div>
 
@@ -43,8 +43,8 @@ export function Footer() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <p className="mb-4 font-bold">Navigasi</p>
-            <div className="space-y-2 text-sm text-white/60">
+            <p className="mb-4 font-bold text-white">Navigation</p>
+            <div className="space-y-2 text-sm text-zinc-400">
               {navigationItems.map((item) => (
                 <a
                   key={item.href}
@@ -58,7 +58,7 @@ export function Footer() {
                 href={getSectionHref("#contact")}
                 className="interactive-transition block hover:text-white"
               >
-                Kontak Saya
+                Contact Me
               </a>
             </div>
           </motion.div>
@@ -73,8 +73,8 @@ export function Footer() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <p className="mb-4 font-bold">Media Sosial Saya</p>
-            <SocialLinks inverse />
+            <p className="mb-4 font-bold">Connect With Me</p>
+            <SocialLinks />
           </motion.div>
         </div>
 

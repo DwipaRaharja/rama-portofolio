@@ -1,9 +1,9 @@
 export const navigationItems = [
-  { label: "Beranda", href: "#home" },
-  { label: "Tentang Saya", href: "#about" },
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
   { label: "Tech Stack", href: "#tech-stack" },
-  { label: "Pendidikan", href: "#education" },
-  { label: "Portofolio", href: "#portfolio" },
+  { label: "Education", href: "#education" },
+  { label: "Portfolio", href: "#portfolio" },
 ] as const;
 
 export const siteConfig = {

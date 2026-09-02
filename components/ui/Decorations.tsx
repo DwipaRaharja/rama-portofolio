@@ -87,45 +87,10 @@ export function AboutFlowLines({ className = "" }: DecorationProps) {
   );
 }
 
-export function SolutionContactFlowLines({ className = "" }: DecorationProps) {
-  const renderFlowLines = (
-    horizontalSpacing: number,
-    verticalSpacing: number,
-  ) =>
-    Array.from({ length: 7 }, (_, index) => {
-      const horizontalOffset = (index - 3) * horizontalSpacing;
-      const verticalOffset = (index - 3) * verticalSpacing;
-
-      return (
-        <path
-          key={index}
-          d={`M-220 ${140 + verticalOffset}C-100 ${110 + verticalOffset} ${40 - horizontalOffset} 160 ${100 - horizontalOffset} 430S400 ${820 + verticalOffset} 760 ${830 + verticalOffset}S${1270 - horizontalOffset} 920 ${1300 - horizontalOffset} 1190S${1360 - horizontalOffset} 1830 1560 ${1940 + verticalOffset}`}
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          vectorEffect="non-scaling-stroke"
-        />
-      );
-    });
-
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      viewBox="0 0 1440 2000"
-      fill="none"
-      preserveAspectRatio="none"
-    >
-      <g className="sm:hidden">{renderFlowLines(42, 20)}</g>
-      <g className="hidden sm:block">{renderFlowLines(22, 22)}</g>
-    </svg>
-  );
-}
 
 export function SectionLabel({ children }: { children: string }) {
   return (
-    <p className="mb-3 text-xs font-semibold capitalize tracking-[0.18em] text-black/55">
+    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
       {children}
     </p>
   );

@@ -1,79 +1,18 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { DotGrid } from "@/components/ui/Decorations";
-import { BrainIcon, CodeIcon, RocketLaunchIcon } from "@/components/ui/Icons";
 import {
   markPortfolioIntroAsSeen,
   PORTFOLIO_INTRO_EVENT,
   shouldPlayPortfolioIntro,
 } from "@/data/portfolio-intro";
 
-type FloatingIntroIconProps = {
-  children: ReactNode;
-  className: string;
-  delay: number;
-  entryX: number;
-  entryY: number;
-  floatY: number;
-  rotation: number;
-  shouldReduceMotion: boolean;
-};
-
-function FloatingIntroIcon({
-  children,
-  className,
-  delay,
-  entryX,
-  entryY,
-  floatY,
-  rotation,
-  shouldReduceMotion,
-}: FloatingIntroIconProps) {
-  return (
-    <div
-      className={`pointer-events-none absolute ${className}`}
-      aria-hidden="true"
-    >
-      <motion.div
-        initial={
-          shouldReduceMotion
-            ? { opacity: 1 }
-            : { opacity: 0, x: entryX, y: entryY, scale: 0.55 }
-        }
-        animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-        transition={{
-          duration: shouldReduceMotion ? 0 : 0.58,
-          delay: shouldReduceMotion ? 0 : delay,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-      >
-        <motion.div
-          className="grid size-16 place-items-center rounded-full border-2 border-white/70 bg-black text-white shadow-[0_16px_45px_rgba(255,255,255,0.08)] sm:size-20"
-          animate={
-            shouldReduceMotion
-              ? undefined
-              : { y: [0, floatY, 0], rotate: [0, rotation, 0] }
-          }
-          transition={{
-            duration: 3.8 + delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          {children}
-        </motion.div>
-      </motion.div>
-    </div>
-  );
-}
-
 export function PortfolioIntro() {
   const shouldReduceMotion = Boolean(useReducedMotion());
   const [shouldShow, setShouldShow] = useState<boolean | null>(null);
+  const [progress, setProgress] = useState(0);
   const hasCompletedRef = useRef(false);
 
   const closeIntro = useCallback(() => {
@@ -94,9 +33,24 @@ export function PortfolioIntro() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    // Progress counter animation from 0 to 100
+    const start = performance.now();
+    const duration = shouldReduceMotion ? 400 : 1800;
+
+    let animFrame: number;
+    const updateProgress = (now: number) => {
+      const elapsed = now - start;
+      const pct = Math.min(100, Math.floor((elapsed / duration) * 100));
+      setProgress(pct);
+      if (pct < 100) {
+        animFrame = requestAnimationFrame(updateProgress);
+      }
+    };
+    animFrame = requestAnimationFrame(updateProgress);
+
     const timer = window.setTimeout(
       closeIntro,
-      shouldReduceMotion ? 550 : 2450,
+      shouldReduceMotion ? 550 : 2350,
     );
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -108,6 +62,7 @@ export function PortfolioIntro() {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      window.cancelAnimationFrame(animFrame);
       window.clearTimeout(timer);
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
@@ -137,134 +92,132 @@ export function PortfolioIntro() {
         <motion.div
           key="portfolio-intro"
           role="status"
-          aria-label="Membuka portofolio Ramadwipa"
-          className="fixed inset-0 z-[100] flex min-h-[100svh] items-center justify-center overflow-hidden bg-black px-5 py-10 text-white"
+          aria-label="Opening Ramadwipa developer portfolio"
+          className="fixed inset-0 z-[100] flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#050505] px-4 py-8 text-white"
           initial={{ opacity: 1, y: 0 }}
           exit={{ y: "-102%" }}
           transition={{
-            duration: shouldReduceMotion ? 0.12 : 0.4,
+            duration: shouldReduceMotion ? 0.12 : 0.42,
             ease: [0.76, 0, 0.24, 1],
           }}
         >
+          {/* Subtle Background Tech Dot Grid with Radial Mask */}
+          <div
+            className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_65%_at_50%_50%,#000_35%,transparent_100%)]"
+            aria-hidden="true"
+          />
+
+          {/* Terminal Window */}
           <motion.div
-            className="absolute right-[8%] top-[8%] text-white/20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <DotGrid />
-          </motion.div>
-
-          <div className="pointer-events-none absolute inset-0">
-            <div className="absolute -left-32 -top-32 size-80 rounded-full border border-white/10" />
-            <div className="absolute -left-24 -top-24 size-80 rounded-full border border-white/10" />
-            <div className="absolute -bottom-48 -right-32 size-96 rounded-full border border-white/10" />
-          </div>
-
-          <FloatingIntroIcon
-            className="left-[7%] top-[24%] sm:left-[12%] sm:top-[18%]"
-            delay={0.32}
-            entryX={-56}
-            entryY={-24}
-            floatY={-7}
-            rotation={-4}
-            shouldReduceMotion={shouldReduceMotion}
-          >
-            <CodeIcon className="size-8 sm:size-10" weight="bold" />
-          </FloatingIntroIcon>
-
-          <FloatingIntroIcon
-            className="bottom-[13%] left-[12%] sm:bottom-[16%] sm:left-[19%]"
-            delay={0.48}
-            entryX={-46}
-            entryY={42}
-            floatY={8}
-            rotation={4}
-            shouldReduceMotion={shouldReduceMotion}
-          >
-            <BrainIcon className="size-8 sm:size-10" weight="bold" />
-          </FloatingIntroIcon>
-
-          <FloatingIntroIcon
-            className="right-[8%] top-[30%] sm:right-[14%] sm:top-[24%]"
-            delay={0.64}
-            entryX={56}
-            entryY={-18}
-            floatY={-9}
-            rotation={5}
-            shouldReduceMotion={shouldReduceMotion}
-          >
-            <RocketLaunchIcon className="size-8 sm:size-10" weight="bold" />
-          </FloatingIntroIcon>
-
-          <motion.div
-            className="relative z-10 w-full max-w-[760px] border border-white/45 bg-black/85 px-6 py-9 text-center shadow-[0_30px_100px_rgba(0,0,0,0.65)] backdrop-blur-sm sm:px-12 sm:py-12"
+            className="relative z-10 w-full max-w-[620px] overflow-hidden rounded-xl border border-white/15 bg-[#0a0a0e]/95 shadow-[0_25px_80px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.03)] backdrop-blur-md"
             initial={
               shouldReduceMotion
                 ? { opacity: 1 }
-                : { opacity: 0, y: 28, scale: 0.96 }
+                : { opacity: 0, y: 24, scale: 0.96 }
             }
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 0.65,
-              delay: shouldReduceMotion ? 0 : 0.28,
+              duration: shouldReduceMotion ? 0 : 0.55,
+              delay: shouldReduceMotion ? 0 : 0.15,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <motion.p
-              className="text-[10px] font-bold uppercase tracking-[0.28em] text-white/55 sm:text-xs"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.58 }}
-            >
-              Ramadwipa · Portfolio
-            </motion.p>
+            {/* Terminal macOS Header Bar */}
+            <div className="flex items-center justify-between border-b border-white/10 bg-[#121216] px-4 py-2.5">
+              {/* Traffic Light Dots */}
+              <div className="flex items-center gap-1.5">
+                <span className="size-2.5 rounded-full bg-[#ff5f56] shadow-[0_0_5px_rgba(255,95,86,0.35)]" />
+                <span className="size-2.5 rounded-full bg-[#ffbd2e] shadow-[0_0_5px_rgba(255,189,46,0.35)]" />
+                <span className="size-2.5 rounded-full bg-[#27c93f] shadow-[0_0_5px_rgba(39,201,63,0.35)]" />
+              </div>
 
-            <motion.h1
-              className="mx-auto mt-5 max-w-[620px] text-[clamp(2.25rem,7vw,4.8rem)] font-extrabold leading-[0.98] tracking-[-0.06em]"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.65,
-                delay: shouldReduceMotion ? 0 : 0.72,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              Selamat datang di portofolio saya.
-            </motion.h1>
+              {/* Title / Path */}
+              <p className="font-mono text-[11px] font-semibold text-zinc-400">
+                ramadwipa@developer: ~/portfolio
+              </p>
 
-            <motion.p
-              className="mt-5 text-sm text-white/55 sm:text-base"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.45, delay: 1.02 }}
-            >
-              Full Stack Developer · Solusi Digital untuk Bisnis
-            </motion.p>
+              {/* Status Pill */}
+              <span className="inline-flex items-center gap-1 text-[10px] font-mono text-zinc-500">
+                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                live
+              </span>
+            </div>
 
-            <div className="mx-auto mt-8 h-px w-full max-w-md overflow-hidden bg-white/15">
-              <motion.span
-                className="block h-full origin-left bg-white"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{
-                  duration: shouldReduceMotion ? 0.2 : 1.45,
-                  delay: shouldReduceMotion ? 0 : 0.72,
-                  ease: "easeInOut",
-                }}
-              />
+            {/* Terminal Body Content */}
+            <div className="p-5 font-mono text-xs sm:p-6 sm:text-[13px] leading-relaxed">
+              {/* Line 1: Command */}
+              <motion.div
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.3 }}
+                className="flex items-center gap-2 text-zinc-300"
+              >
+                <span className="font-bold text-white">$</span>
+                <span>ramadwipa --init-system</span>
+              </motion.div>
+
+              {/* Line 2: Role */}
+              <motion.div
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.65 }}
+                className="mt-3 flex items-center gap-2 text-zinc-400"
+              >
+                <span className="text-emerald-400">✔</span>
+                <span>Role:</span>
+                <span className="font-semibold text-white">Full Stack Developer</span>
+              </motion.div>
+
+              {/* Line 3: Stack */}
+              <motion.div
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 1.0 }}
+                className="mt-2 flex flex-wrap items-center gap-2 text-zinc-400"
+              >
+                <span className="text-emerald-400">✔</span>
+                <span>Stack:</span>
+                <span className="text-zinc-200">Next.js · TypeScript · Laravel · MySQL</span>
+              </motion.div>
+
+              {/* Line 4: Objective */}
+              <motion.div
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 1.35 }}
+                className="mt-2 flex items-center gap-2 text-zinc-400"
+              >
+                <span className="text-emerald-400">✔</span>
+                <span>Focus:</span>
+                <span className="text-white">Digital Solutions for Business</span>
+              </motion.div>
+
+              {/* Line 5: Progress Bar */}
+              <div className="mt-6 border-t border-white/10 pt-4">
+                <div className="mb-2 flex items-center justify-between text-[11px] text-zinc-400">
+                  <span>Launching Portfolio v2.0</span>
+                  <span className="font-bold text-white">{progress}%</span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                  <motion.div
+                    className="h-full rounded-full bg-white transition-all duration-100 ease-out"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
             </div>
           </motion.div>
 
+          {/* Skip Button */}
           <motion.button
             type="button"
             onClick={closeIntro}
-            className="interactive-transition absolute bottom-5 right-5 rounded-full border border-white/30 px-4 py-2 text-xs font-semibold text-white/65 hover:border-white hover:text-white sm:bottom-8 sm:right-8"
+            className="interactive-transition absolute bottom-5 right-5 rounded-full border border-white/20 bg-white/[0.04] px-4 py-1.5 font-mono text-xs font-semibold text-zinc-400 hover:border-white hover:text-white sm:bottom-8 sm:right-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.35, delay: 1.1 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
           >
-            Lewati
+            Skip (Esc)
           </motion.button>
         </motion.div>
       )}

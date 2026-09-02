@@ -28,24 +28,33 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Ramadwipa | Full Stack Developer",
   description:
-    "Portofolio Ramadwipa, Full Stack Developer yang membangun solusi digital untuk kebutuhan bisnis.",
-  keywords: ["Ramadwipa", "Full Stack Developer", "Web Developer", "Portofolio"],
+    "Portfolio of Ramadwipa, a Full Stack Developer building clean, functional, and reliable digital solutions for modern business needs.",
+  keywords: [
+    "Ramadwipa",
+    "Full Stack Developer",
+    "Web Developer",
+    "Portfolio",
+    "Next.js",
+    "TypeScript",
+    "React",
+    "Tailwind CSS",
+  ],
   authors: [{ name: "Ramadwipa" }],
   creator: "Ramadwipa",
   publisher: "Ramadwipa",
   openGraph: {
     title: "Ramadwipa | Full Stack Developer",
     description:
-      "Full Stack Developer yang membangun aplikasi web rapi, fungsional, dan mudah digunakan untuk kebutuhan bisnis.",
-    siteName: "Portofolio Ramadwipa",
-    locale: "id_ID",
+      "Full Stack Developer building clean, functional, and intuitive web applications for modern businesses.",
+    siteName: "Ramadwipa Portfolio",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Ramadwipa | Full Stack Developer",
     description:
-      "Full Stack Developer yang membangun solusi digital untuk kebutuhan bisnis.",
+      "Full Stack Developer building clean, functional, and reliable digital solutions for modern businesses.",
   },
   robots: {
     index: true,
@@ -56,10 +65,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="id"
+      lang="en"
       className={`${plusJakartaSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white font-sans text-black">
+      <body className="min-h-full bg-[#050505] font-sans text-white">
         <PortfolioIntro />
         <PageTransition />
         <SmoothScroll />

@@ -35,12 +35,10 @@ const socialItems = [
 ] as const;
 
 type SocialLinksProps = {
-  inverse?: boolean;
   className?: string;
 };
 
 export function SocialLinks({
-  inverse = false,
   className = "",
 }: SocialLinksProps) {
   return (
@@ -56,11 +54,7 @@ export function SocialLinks({
             rel={opensInNewTab ? "noopener noreferrer" : undefined}
             aria-label={`${label} Ramadwipa${opensInNewTab ? " (buka di tab baru)" : ""}`}
             title={label}
-            className={`interactive-transition grid size-10 place-items-center rounded-full border-2 hover:-translate-y-1 ${
-              inverse
-                ? "border-white/40 text-white hover:border-white"
-                : "border-black/30 text-black hover:border-black"
-            }`}
+            className="interactive-transition grid size-10 place-items-center rounded-full border border-white/20 bg-[#121215] text-white hover:-translate-y-1 hover:border-white hover:bg-white hover:text-[#050505] hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           >
             <Icon className="size-[22px]" />
           </a>

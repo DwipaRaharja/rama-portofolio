@@ -1,15 +1,19 @@
 import { AboutSection } from "@/components/sections/AboutSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { EducationSection } from "@/components/sections/EducationSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
-import { SolutionContactSection } from "@/components/sections/SolutionContactSection";
+import { TechStackSection } from "@/components/sections/TechStackSection";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-x-clip">
       <HeroSection />
       <AboutSection />
+      <TechStackSection />
+      <EducationSection />
       <PortfolioSection />
-      <SolutionContactSection />
+      <ContactSection />
     </main>
   );
 }

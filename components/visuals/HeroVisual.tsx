@@ -19,11 +19,11 @@ export function HeroVisual() {
         }
         transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <DotGrid className="text-black" />
+        <DotGrid className="text-white/20" />
       </motion.div>
 
       <motion.div
-        className="absolute left-[15%] top-[18%] grid size-[68%] place-items-center rounded-full bg-black text-white shadow-[0_20px_45px_rgba(0,0,0,0.16)] will-change-transform"
+        className="absolute left-[15%] top-[18%] grid size-[68%] place-items-center rounded-full border-2 border-white/20 bg-[#121215] text-white shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(255,255,255,0.05)] will-change-transform"
         animate={
           shouldReduceMotion
             ? undefined
@@ -35,7 +35,7 @@ export function HeroVisual() {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-[7%] left-[4%] grid size-[30%] place-items-center rounded-full border-2 border-white bg-black text-white shadow-lg will-change-transform"
+        className="absolute bottom-[7%] left-[4%] grid size-[30%] place-items-center rounded-full border border-white/30 bg-[#18181c] text-white shadow-[0_12px_30px_rgba(0,0,0,0.7)] will-change-transform"
         animate={
           shouldReduceMotion
             ? undefined
@@ -52,7 +52,7 @@ export function HeroVisual() {
       </motion.div>
 
       <motion.div
-        className="absolute right-[4%] top-[30%] grid size-[23%] place-items-center rounded-full border-2 border-white bg-black text-white shadow-lg will-change-transform"
+        className="absolute right-[4%] top-[30%] grid size-[23%] place-items-center rounded-full border border-white/30 bg-[#18181c] text-white shadow-[0_12px_30px_rgba(0,0,0,0.7)] will-change-transform"
         animate={
           shouldReduceMotion
             ? undefined
