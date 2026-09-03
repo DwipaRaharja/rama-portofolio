@@ -26,6 +26,28 @@ export const projects: Project[] = [
     accent: "ember",
   },
   {
+    id: "smart-retail-pos",
+    title: "Smart Retail & POS Platform",
+    eyebrow: "Retail & Inventory System",
+    description:
+      "Modern point of sale and multi-outlet inventory management platform designed for rapid cashier checkout and stock tracking.",
+    summary:
+      "A comprehensive Point of Sale (POS) and inventory tracking platform engineered to streamline retail commerce. Built with an intuitive cashier terminal, real-time stock sync across outlets, barcode scanner support, and daily financial profit-loss analytics.",
+    technologies: ["Laravel", "MySQL", "REST API", "Tailwind CSS"],
+    features: [
+      "High-speed cashier checkout & automated barcode scanning",
+      "Real-time multi-outlet stock tracking & low inventory alerts",
+      "Comprehensive daily revenue, expense, and profit-loss analytics",
+    ],
+    outcomes: [
+      "Accelerated checkout processing and eliminated manual calculation errors",
+      "Provided real-time stock visibility across multiple store locations",
+      "Delivered transparent financial data and automated daily sales summaries",
+    ],
+    repositoryUrl: "https://github.com/DwipaRaharja",
+    accent: "emerald",
+  },
+  {
     id: "ramadwipa-portfolio",
     title: "Interactive Developer Portfolio",
     eyebrow: "Digital Personal Branding",

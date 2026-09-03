@@ -29,7 +29,7 @@ export function PortfolioSection() {
         </Reveal>
 
         {/* Compact Grid */}
-        <div className="mt-10 grid max-w-4xl gap-6 sm:grid-cols-2 lg:gap-7">
+        <div className="mt-10 grid max-w-7xl gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

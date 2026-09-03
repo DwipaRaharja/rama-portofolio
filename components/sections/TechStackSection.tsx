@@ -10,6 +10,7 @@ import {
   ListChecksIcon,
   RocketLaunchIcon,
 } from "@/components/ui/Icons";
+import { WindowCard } from "@/components/ui/WindowCard";
 
 const techStackGroups = [
   {
@@ -79,8 +80,8 @@ const cardVariants: Variants = {
     transition: {
       duration: 0.55,
       ease: [0.22, 1, 0.36, 1],
-      when: "beforeChildren", // Tunggu boks kartu mendarat dulu!
-      staggerChildren: 0.08, // Setelah kartu mendarat, picu kemunculan isi di dalamnya
+      when: "beforeChildren",
+      staggerChildren: 0.08,
     },
   },
 };
@@ -144,74 +145,84 @@ export function TechStackSection() {
       <Container>
         <motion.div
           aria-labelledby="tech-stack-title"
-          className="rounded-2xl border border-white/12 bg-[#0e0e11] p-6 text-white shadow-[0_18px_55px_-38px_rgba(0,0,0,0.85)] sm:p-8 lg:p-10"
           variants={sectionVariants}
           initial={shouldReduceMotion ? "visible" : "hidden"}
           whileInView="visible"
           viewport={{ once: true, amount: 0.12 }}
         >
-          <motion.div variants={headerVariants} className="max-w-2xl">
-            <SectionLabel>Technologies I use</SectionLabel>
-            <h3
-              id="tech-stack-title"
-              className="text-3xl font-extrabold tracking-[-0.045em] text-white sm:text-4xl"
-            >
-              My Tech Stack
-            </h3>
-            <p className="mt-3 text-sm leading-6 text-zinc-400">
-              Technologies and tools I leverage to build robust web applications
-              from frontend interfaces and backend APIs to database management
-              and cloud deployment.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={cardsContainerVariants}
-            className="mt-8 grid gap-5 sm:grid-cols-2"
+          {/* Card Utama Berbentuk WindowCard Mockup */}
+          <WindowCard
+            badge="Tech Stack"
+            interactive={false}
+            className="rounded-2xl border border-white/12 bg-[#0e0e11] shadow-[0_18px_55px_-38px_rgba(0,0,0,0.85)]"
+            headerClassName="px-4 py-3 sm:px-6"
+            dotSize="md"
           >
-            {techStackGroups.map(({ label, technologies, Icon }) => (
-              <motion.article
-                key={label}
-                variants={cardVariants}
-                className="group/technology h-full"
+            <div className="p-6 sm:p-8 lg:p-10">
+              <motion.div variants={headerVariants} className="max-w-2xl">
+                <SectionLabel>Technologies I use</SectionLabel>
+                <h3
+                  id="tech-stack-title"
+                  className="text-3xl font-extrabold tracking-[-0.045em] text-white sm:text-4xl"
+                >
+                  My Tech Stack
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">
+                  Technologies and tools I leverage to build robust web applications
+                  from frontend interfaces and backend APIs to database management
+                  and cloud deployment.
+                </p>
+              </motion.div>
+
+              <motion.div
+                variants={cardsContainerVariants}
+                className="mt-8 grid gap-5 sm:grid-cols-2"
               >
-                <div className="surface-transition h-full transform-gpu rounded-xl border border-white/15 bg-[#121215] p-6 will-change-transform group-hover/technology:-translate-y-1 group-hover/technology:border-white/40 group-hover/technology:bg-[#18181c] group-hover/technology:shadow-2xl sm:p-7">
-                  {/* Fase 2: Ikon Pop-in */}
-                  <motion.div
-                    variants={iconVariants}
-                    className="surface-transition grid size-12 place-items-center rounded-lg border border-white/20 bg-[#18181c] text-white group-hover/technology:border-white/50 group-hover/technology:bg-[#1e1e24] group-hover/technology:shadow-[0_0_15px_rgba(255,255,255,0.08)]"
+                {techStackGroups.map(({ label, technologies, Icon }) => (
+                  <motion.article
+                    key={label}
+                    variants={cardVariants}
+                    className="group/technology h-full"
                   >
-                    <Icon className="surface-transition size-6 group-hover/technology:scale-115 group-hover/technology:-rotate-12" />
-                  </motion.div>
-
-                  {/* Fase 2: Judul Kategori */}
-                  <motion.h4
-                    variants={titleVariants}
-                    className="mt-5 text-base font-extrabold text-white sm:text-lg"
-                  >
-                    {label}
-                  </motion.h4>
-
-                  {/* Fase 2: Badges Cascade In */}
-                  <motion.div
-                    variants={badgesContainerVariants}
-                    className="mt-4 flex flex-wrap gap-2.5 sm:gap-3"
-                  >
-                    {technologies.map((technology, index) => (
-                      <motion.span
-                        key={technology}
-                        variants={badgeVariants}
-                        className="inline-flex transform-gpu rounded-lg border border-white/15 bg-white/[0.04] px-3.5 py-2 text-xs font-semibold text-zinc-200 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/technology:-translate-y-2 group-hover/technology:scale-[1.04] group-hover/technology:border-white/35 group-hover/technology:bg-white/10 group-hover/technology:text-white group-hover/technology:shadow-[0_6px_16px_rgba(0,0,0,0.5),0_0_12px_rgba(255,255,255,0.06)] hover:!scale-110 hover:!-translate-y-3 hover:!border-white/60 hover:!bg-white/20 sm:text-sm"
-                        style={{ transitionDelay: `${index * 85}ms` }}
+                    <div className="surface-transition h-full transform-gpu rounded-xl border border-white/15 bg-[#121215] p-6 will-change-transform group-hover/technology:-translate-y-1 group-hover/technology:border-white/40 group-hover/technology:bg-[#18181c] group-hover/technology:shadow-2xl sm:p-7">
+                      {/* Ikon Pop-in */}
+                      <motion.div
+                        variants={iconVariants}
+                        className="surface-transition grid size-12 place-items-center rounded-lg border border-white/20 bg-[#18181c] text-white group-hover/technology:border-white/50 group-hover/technology:bg-[#1e1e24] group-hover/technology:shadow-[0_0_15px_rgba(255,255,255,0.08)]"
                       >
-                        {technology}
-                      </motion.span>
-                    ))}
-                  </motion.div>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
+                        <Icon className="surface-transition size-6 group-hover/technology:scale-115 group-hover/technology:-rotate-12" />
+                      </motion.div>
+
+                      {/* Judul Kategori */}
+                      <motion.h4
+                        variants={titleVariants}
+                        className="mt-5 text-base font-extrabold text-white sm:text-lg"
+                      >
+                        {label}
+                      </motion.h4>
+
+                      {/* Badges Cascade In */}
+                      <motion.div
+                        variants={badgesContainerVariants}
+                        className="mt-4 flex flex-wrap gap-2.5 sm:gap-3"
+                      >
+                        {technologies.map((technology, index) => (
+                          <motion.span
+                            key={technology}
+                            variants={badgeVariants}
+                            className="inline-flex transform-gpu rounded-lg border border-white/15 bg-white/[0.04] px-3.5 py-2 text-xs font-semibold text-zinc-200 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/technology:-translate-y-2 group-hover/technology:scale-[1.04] group-hover/technology:border-white/35 group-hover/technology:bg-white/10 group-hover/technology:text-white group-hover/technology:shadow-[0_6px_16px_rgba(0,0,0,0.5),0_0_12px_rgba(255,255,255,0.06)] hover:!scale-110 hover:!-translate-y-3 hover:!border-white/60 hover:!bg-white/20 sm:text-sm"
+                            style={{ transitionDelay: `${index * 85}ms` }}
+                          >
+                            {technology}
+                          </motion.span>
+                        ))}
+                      </motion.div>
+                    </div>
+                  </motion.article>
+                ))}
+              </motion.div>
+            </div>
+          </WindowCard>
         </motion.div>
       </Container>
     </section>

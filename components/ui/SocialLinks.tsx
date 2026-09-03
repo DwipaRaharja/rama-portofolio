@@ -5,12 +5,13 @@ import {
   MusicIcon,
   WhatsappIcon,
 } from "@/components/ui/Icons";
+import { siteConfig } from "@/data/site";
 
 const socialItems = [
   {
     label: "WhatsApp",
     Icon: WhatsappIcon,
-    href: "https://wa.me/6287776744538",
+    href: `https://wa.me/${siteConfig.whatsappNumber}`,
   },
   {
     label: "GitHub",
@@ -25,7 +26,7 @@ const socialItems = [
   {
     label: "Email",
     Icon: EnvelopeIcon,
-    href: "mailto:ramadwipa168@gmail.com",
+    href: `mailto:${siteConfig.contactEmail}`,
   },
   {
     label: "TikTok",

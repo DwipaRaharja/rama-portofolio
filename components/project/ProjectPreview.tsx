@@ -13,6 +13,11 @@ const accentStyles = {
     glow: "from-[#a176ff] via-[#6142a0] to-transparent",
     mark: "bg-[#7c56cc]",
   },
+  emerald: {
+    frame: "bg-[#064e3b]",
+    glow: "from-[#10b981] via-[#059669] to-transparent",
+    mark: "bg-[#10b981]",
+  },
 };
 
 type ProjectPreviewProps = {

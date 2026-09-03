@@ -7,7 +7,7 @@ export type Project = {
   technologies: string[];
   features: string[];
   outcomes: string[];
-  accent: "ember" | "violet";
+  accent: "ember" | "violet" | "emerald";
   imageUrl?: string;
   imageAlt?: string;
   demoUrl?: string;
