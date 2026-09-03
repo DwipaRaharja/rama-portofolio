@@ -239,7 +239,7 @@ export function PageTransition() {
                 {/* 3 Animated Dots */}
                 <span className="inline-flex items-center gap-1.5 pb-1">
                   <motion.span
-                    className="size-2.5 sm:size-3 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+                    className="size-2.5 sm:size-3 rounded-full bg-white"
                     animate={
                       shouldReduceMotion
                         ? { opacity: [0.3, 1, 0.3] }
@@ -253,7 +253,7 @@ export function PageTransition() {
                     }}
                   />
                   <motion.span
-                    className="size-2.5 sm:size-3 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+                    className="size-2.5 sm:size-3 rounded-full bg-white"
                     animate={
                       shouldReduceMotion
                         ? { opacity: [0.3, 1, 0.3] }
@@ -267,7 +267,7 @@ export function PageTransition() {
                     }}
                   />
                   <motion.span
-                    className="size-2.5 sm:size-3 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+                    className="size-2.5 sm:size-3 rounded-full bg-white"
                     animate={
                       shouldReduceMotion
                         ? { opacity: [0.3, 1, 0.3] }
