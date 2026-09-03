@@ -10,7 +10,7 @@ import { navigationItems, siteConfig } from "@/data/site";
 export function Footer() {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
-  const revealOffset = shouldReduceMotion ? 0 : 42;
+  const revealOffset = shouldReduceMotion ? 0 : 20;
   const getSectionHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
   return (
@@ -22,8 +22,8 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 0.95,
-              delay: shouldReduceMotion ? 0 : 0.12,
+              duration: shouldReduceMotion ? 0 : 0.6,
+              delay: shouldReduceMotion ? 0 : 0.06,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -38,8 +38,8 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 0.95,
-              delay: shouldReduceMotion ? 0 : 0.28,
+              duration: shouldReduceMotion ? 0 : 0.6,
+              delay: shouldReduceMotion ? 0 : 0.16,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -68,8 +68,8 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 0.95,
-              delay: shouldReduceMotion ? 0 : 0.44,
+              duration: shouldReduceMotion ? 0 : 0.6,
+              delay: shouldReduceMotion ? 0 : 0.26,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -80,12 +80,12 @@ export function Footer() {
 
         <div className="mt-16 overflow-hidden">
           <motion.p
-            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 72 }}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.18 }}
             transition={{
-              duration: shouldReduceMotion ? 0 : 1.2,
-              delay: shouldReduceMotion ? 0 : 0.32,
+              duration: shouldReduceMotion ? 0 : 0.85,
+              delay: shouldReduceMotion ? 0 : 0.2,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="whitespace-nowrap text-center text-[clamp(4.2rem,12.5vw,11rem)] font-extrabold leading-none tracking-[-0.075em]"

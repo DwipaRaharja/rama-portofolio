@@ -25,23 +25,22 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       initial={
         shouldReduceMotion
           ? { opacity: 0 }
-          : { opacity: 0, x: -48, scale: 0.78 }
+          : { opacity: 0, y: 32, scale: 0.96 }
       }
       whileInView={
         shouldReduceMotion
           ? { opacity: 1 }
-          : { opacity: 1, x: 0, scale: 1 }
+          : { opacity: 1, y: 0, scale: 1 }
       }
       viewport={{ once: true, amount: 0.15 }}
       transition={{
-        duration: shouldReduceMotion ? 0.2 : 0.72,
-        delay: shouldReduceMotion ? 0 : 0.1 + index * 0.18,
-        ease: [0.34, 1.56, 0.64, 1],
+        duration: shouldReduceMotion ? 0.2 : 0.6,
+        delay: shouldReduceMotion ? 0 : 0.06 + index * 0.12,
+        ease: [0.22, 1, 0.36, 1],
       }}
       className="h-full"
     >
       <WindowCard
-        badge={project.eyebrow}
         className="group/project flex h-full flex-col"
       >
         {/* Screenshot Image Container - Compact 16:9 Aspect */}

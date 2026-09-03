@@ -152,7 +152,6 @@ export function TechStackSection() {
         >
           {/* Card Utama Berbentuk WindowCard Mockup */}
           <WindowCard
-            badge="Tech Stack"
             interactive={false}
             className="rounded-2xl border border-white/12 bg-[#0e0e11] shadow-[0_18px_55px_-38px_rgba(0,0,0,0.85)]"
             headerClassName="px-4 py-3 sm:px-6"

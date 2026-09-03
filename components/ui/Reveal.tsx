@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 type RevealProps = {
@@ -11,9 +11,9 @@ type RevealProps = {
 };
 
 const hiddenOffset = {
-  up: { x: 0, y: 44 },
-  left: { x: -44, y: 0 },
-  right: { x: 44, y: 0 },
+  up: { x: 0, y: 24 },
+  left: { x: -24, y: 0 },
+  right: { x: 24, y: 0 },
 };
 
 export function Reveal({
@@ -22,15 +22,25 @@ export function Reveal({
   delay = 0,
   direction = "up",
 }: RevealProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, ...hiddenOffset[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      initial={
+        shouldReduceMotion
+          ? { opacity: 0 }
+          : { opacity: 0, ...hiddenOffset[direction] }
+      }
+      whileInView={
+        shouldReduceMotion
+          ? { opacity: 1 }
+          : { opacity: 1, x: 0, y: 0 }
+      }
       viewport={{ once: true, amount: 0.12 }}
       transition={{
-        duration: 1.05,
-        delay: 0.12 + delay * 1.5,
+        duration: shouldReduceMotion ? 0.15 : 0.65,
+        delay: shouldReduceMotion ? 0 : 0.08 + delay,
         ease: [0.22, 1, 0.36, 1],
       }}
     >

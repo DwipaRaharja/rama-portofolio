@@ -18,11 +18,11 @@ export function AboutSection() {
 
       <Container className="relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-[320px_1fr]">
-          <Reveal direction="left">
+          <Reveal direction="up">
             <PortraitIllustration />
           </Reveal>
 
-          <Reveal direction="right" delay={0.08}>
+          <Reveal direction="up" delay={0.08}>
             <SectionLabel>Get to know me</SectionLabel>
             <h2 className="text-4xl font-extrabold tracking-[-0.045em] text-white sm:text-5xl">
               About Me

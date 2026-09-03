@@ -224,11 +224,8 @@ export function PageTransition() {
                 {transitionInfo.path}
               </p>
 
-              {/* Status Indicator */}
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-mono text-zinc-400">
-                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                live
-              </span>
+              {/* Spacer to keep path title perfectly centered */}
+              <div className="w-[52px]" aria-hidden="true" />
             </div>
 
             {/* Window Body: Big "Loading" text with 3 animated dots */}
