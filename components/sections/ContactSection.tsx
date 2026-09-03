@@ -1,18 +1,28 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion, type Variants } from "motion/react";
-import { useState } from "react";
+import { FormEvent, KeyboardEvent, useEffect, useState } from "react";
 
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/Decorations";
 import {
+  ArrowRightIcon,
   ArrowUpRightIcon,
   CheckIcon,
+  CloseIcon,
   EnvelopeIcon,
+  SendIcon,
   WhatsappIcon,
 } from "@/components/ui/Icons";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { siteConfig } from "@/data/site";
+
+const serviceOptions = [
+  "Full Stack Web App",
+  "Frontend / UI Engineering",
+  "Backend & REST API",
+  "System Consultation",
+] as const;
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -41,6 +51,35 @@ export function ContactSection() {
   const shouldReduceMotion = useReducedMotion();
   const [copiedEmail, setCopiedEmail] = useState(false);
 
+  // Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [selectedService, setSelectedService] = useState<string>(serviceOptions[0]);
+  const [message, setMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  // Close modal on Escape
+  useEffect(() => {
+    const handleKeyDown = (e: globalThis.KeyboardEvent) => {
+      if (e.key === "Escape" && isModalOpen) {
+        setIsModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
+
+  // Lock scroll when modal open
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isModalOpen]);
+
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(siteConfig.contactEmail);
@@ -51,10 +90,51 @@ export function ContactSection() {
     }
   };
 
-  const whatsappMessage = encodeURIComponent(
+  const handleSendInquiry = (e?: FormEvent) => {
+    if (e) e.preventDefault();
+    if (!name.trim() || !message.trim()) return;
+
+    setIsSending(true);
+
+    const formattedLines = [
+      "Halo Ramadwipa, saya tertarik berdiskusi mengenai proyek:",
+      "",
+      `👤 Nama / Klien : ${name.trim()}`,
+      `📞 Kontak       : ${contact.trim() || "Tidak dicantumkan"}`,
+      `💼 Layanan      : ${selectedService}`,
+      "",
+      `📝 Detail Kebutuhan :`,
+      message.trim(),
+    ];
+
+    const formattedMessage = encodeURIComponent(formattedLines.join("\n"));
+    const inquiryUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${formattedMessage}`;
+
+    setTimeout(() => {
+      setIsSending(false);
+      setIsModalOpen(false);
+      setName("");
+      setContact("");
+      setMessage("");
+
+      const win = window.open(inquiryUrl, "_blank", "noopener,noreferrer");
+      if (!win) {
+        window.location.href = inquiryUrl;
+      }
+    }, 200);
+  };
+
+  const handleTextareaKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+      e.preventDefault();
+      handleSendInquiry();
+    }
+  };
+
+  const directWhatsappMessage = encodeURIComponent(
     "Hello Ramadwipa, I would like to discuss a project with you.",
   );
-  const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${whatsappMessage}`;
+  const directWhatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${directWhatsappMessage}`;
 
   return (
     <section
@@ -87,8 +167,7 @@ export function ContactSection() {
               className="mt-4 text-sm leading-relaxed text-zinc-400 sm:text-base"
             >
               Have a project in mind, an opportunity to discuss, or want to collaborate
-              on modern web development? Feel free to reach out directly through my
-              primary channels.
+              on modern web development? Fill out a quick inquiry or connect directly.
             </motion.p>
 
             {/* Availability Pill */}
@@ -99,8 +178,23 @@ export function ContactSection() {
               </div>
             </motion.div>
 
+            {/* Trigger Button: Pop up Form */}
+            <motion.div variants={itemVariants} className="mt-7">
+              <motion.button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+                className="group inline-flex h-12 items-center gap-3 rounded-xl bg-white px-6 text-sm font-bold text-[#050505] transition-all duration-200 hover:bg-zinc-200 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]"
+              >
+                <EnvelopeIcon className="size-5 transition-transform duration-200 group-hover:-translate-y-0.5" />
+                <span>Send Project Inquiry</span>
+                <ArrowRightIcon className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </motion.button>
+            </motion.div>
+
             {/* Social Links */}
-            <motion.div variants={itemVariants} className="mt-8">
+            <motion.div variants={itemVariants} className="mt-9 border-t border-white/10 pt-6">
               <p className="font-mono text-[11px] uppercase tracking-widest text-zinc-500">
                 Connect Across Platforms
               </p>
@@ -189,7 +283,7 @@ export function ContactSection() {
                 </div>
 
                 <a
-                  href={whatsappUrl}
+                  href={directWhatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-9 items-center justify-center gap-1.5 self-end rounded-lg border border-emerald-500/30 bg-emerald-500/[0.1] px-4 text-xs font-bold text-emerald-300 transition-all hover:border-emerald-400/50 hover:bg-emerald-500/20 hover:text-emerald-200 sm:self-auto"
@@ -202,6 +296,185 @@ export function ContactSection() {
           </motion.div>
         </motion.div>
       </Container>
+
+      {/* Clean & Sleek Popup Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-6">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsModalOpen(false)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+            />
+
+            {/* Dialog Card */}
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-inquiry-heading"
+              initial={{ opacity: 0, scale: 0.96, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 16 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-10 my-auto w-full max-w-lg overflow-hidden rounded-2xl border border-white/15 bg-[#0e0e11] p-6 text-white shadow-[0_25px_80px_rgba(0,0,0,0.95)] sm:p-8"
+            >
+              {/* Modal Header */}
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3
+                    id="modal-inquiry-heading"
+                    className="text-xl font-extrabold tracking-tight text-white sm:text-2xl"
+                  >
+                    Project Inquiry
+                  </h3>
+                  <p className="mt-1 text-xs leading-relaxed text-zinc-400 sm:text-sm">
+                    Tell me about your project requirements to start a conversation.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  aria-label="Close dialog"
+                  className="interactive-transition -mr-2 -mt-2 grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-zinc-400 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                >
+                  <CloseIcon className="size-5" />
+                </button>
+              </div>
+
+              {/* Modal Form */}
+              <form onSubmit={handleSendInquiry} className="mt-6 space-y-4">
+                {/* Name Field */}
+                <div>
+                  <label
+                    htmlFor="inquiry-name"
+                    className="block text-xs font-bold uppercase tracking-wider text-zinc-400"
+                  >
+                    Your Name or Organization *
+                  </label>
+                  <input
+                    id="inquiry-name"
+                    type="text"
+                    required
+                    autoFocus
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="e.g. Alex Rivers / Studio Acme"
+                    className="mt-2 w-full rounded-xl border border-white/15 bg-[#141418] px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none transition-colors focus:border-white/50 focus:bg-[#18181e]"
+                  />
+                </div>
+
+                {/* Contact Field */}
+                <div>
+                  <label
+                    htmlFor="inquiry-contact"
+                    className="block text-xs font-bold uppercase tracking-wider text-zinc-400"
+                  >
+                    Your Email or WhatsApp Number
+                  </label>
+                  <input
+                    id="inquiry-contact"
+                    type="text"
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
+                    placeholder="e.g. alex@example.com or +62 812..."
+                    className="mt-2 w-full rounded-xl border border-white/15 bg-[#141418] px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none transition-colors focus:border-white/50 focus:bg-[#18181e]"
+                  />
+                </div>
+
+                {/* Service Interest Chips */}
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400">
+                    Project Interest
+                  </label>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {serviceOptions.map((opt) => (
+                      <button
+                        key={opt}
+                        type="button"
+                        onClick={() => setSelectedService(opt)}
+                        className={`interactive-transition rounded-lg border px-3 py-1.5 text-xs font-semibold ${
+                          selectedService === opt
+                            ? "border-white bg-white text-[#050505]"
+                            : "border-white/15 bg-white/[0.04] text-zinc-300 hover:border-white/35 hover:bg-white/10"
+                        }`}
+                      >
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Message Field */}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <label
+                      htmlFor="inquiry-message"
+                      className="block text-xs font-bold uppercase tracking-wider text-zinc-400"
+                    >
+                      Project Brief / Message *
+                    </label>
+                    <span className="text-[11px] text-zinc-500">
+                      Ctrl + Enter to send
+                    </span>
+                  </div>
+                  <textarea
+                    id="inquiry-message"
+                    required
+                    rows={4}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyDown={handleTextareaKeyDown}
+                    placeholder="Describe your project goals, scope, timeline, or any questions..."
+                    className="mt-2 w-full resize-y rounded-xl border border-white/15 bg-[#141418] p-4 text-sm text-white placeholder-zinc-600 outline-none transition-colors focus:border-white/50 focus:bg-[#18181e]"
+                  />
+                </div>
+
+                {/* Modal Footer Actions */}
+                <div className="flex flex-col-reverse gap-2.5 pt-3 sm:flex-row sm:items-center sm:justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="inline-flex h-11 items-center justify-center rounded-xl border border-white/15 bg-white/[0.04] px-5 text-sm font-semibold text-zinc-300 transition-colors hover:border-white/30 hover:bg-white/10 hover:text-white"
+                  >
+                    Cancel
+                  </button>
+
+                  <motion.button
+                    type="submit"
+                    disabled={isSending || !name.trim() || !message.trim()}
+                    whileHover={
+                      shouldReduceMotion || !name.trim() || !message.trim()
+                        ? undefined
+                        : { scale: 1.01 }
+                    }
+                    whileTap={
+                      shouldReduceMotion || !name.trim() || !message.trim()
+                        ? undefined
+                        : { scale: 0.98 }
+                    }
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-bold text-[#050505] transition-all hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    {isSending ? (
+                      <span>Opening WhatsApp...</span>
+                    ) : (
+                      <>
+                        <WhatsappIcon className="size-5" />
+                        <span>Send via WhatsApp</span>
+                        <SendIcon className="size-4" />
+                      </>
+                    )}
+                  </motion.button>
+                </div>
+              </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
