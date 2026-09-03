@@ -13,6 +13,7 @@ import {
   GithubIcon,
 } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
+import { WindowCard } from "@/components/ui/WindowCard";
 import { getProjectById, projects } from "@/data/projects";
 
 export const dynamicParams = false;
@@ -80,10 +81,10 @@ export default async function ProjectDetailPage({
           <div className="mt-12 grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
             <div className="max-w-4xl">
               <SectionLabel>Case Study</SectionLabel>
-              <h1 className="text-[clamp(2.8rem,8vw,6.5rem)] font-extrabold leading-[0.94] tracking-[-0.065em] text-white">
+              <h1 className="text-3xl font-extrabold leading-[1.08] tracking-[-0.045em] text-white sm:text-4xl md:text-5xl lg:text-[3.25rem]">
                 {project.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-base leading-8 text-zinc-400 sm:text-lg">
+              <p className="mt-5 max-w-3xl text-base leading-8 text-zinc-400 sm:text-lg">
                 {project.description}
               </p>
             </div>
@@ -127,20 +128,19 @@ export default async function ProjectDetailPage({
 
       <section className="bg-[#0a0a0d] py-12 sm:py-16 lg:py-20">
         <Container>
-          <Reveal className="mx-auto max-w-[1080px] overflow-hidden rounded-2xl border border-white/15 bg-[#0e0e11] shadow-[0_24px_65px_-38px_rgba(0,0,0,0.9)]">
-            <div className="flex h-11 items-center justify-between border-b border-white/15 px-4 text-white sm:px-5">
-              <div className="flex items-center gap-1.5" aria-hidden="true">
-                <span className="size-2.5 rounded-full bg-[#ff5f56] shadow-[0_0_6px_rgba(255,95,86,0.35)]" />
-                <span className="size-2.5 rounded-full bg-[#ffbd2e] shadow-[0_0_6px_rgba(255,189,46,0.35)]" />
-                <span className="size-2.5 rounded-full bg-[#27c93f] shadow-[0_0_6px_rgba(39,201,63,0.35)]" />
+          <Reveal className="mx-auto max-w-[1080px]">
+            <WindowCard
+              badge="Project Preview"
+              badgePulse={false}
+              interactive={false}
+              dotSize="md"
+              className="rounded-2xl border border-white/15 bg-[#0e0e11] shadow-[0_24px_65px_-38px_rgba(0,0,0,0.9)]"
+              headerClassName="h-11 px-4 sm:px-5"
+            >
+              <div className="p-2 sm:p-3">
+                <ProjectPreview project={project} detail />
               </div>
-              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-400 sm:text-[10px]">
-                Project Preview
-              </p>
-            </div>
-            <div className="p-2 sm:p-3">
-              <ProjectPreview project={project} detail />
-            </div>
+            </WindowCard>
           </Reveal>
 
           <div className="mt-8 grid items-start gap-6 lg:grid-cols-[1.08fr_.92fr]">
