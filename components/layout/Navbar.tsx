@@ -181,8 +181,6 @@ export function Navbar() {
             );
           })}
 
-          <ThemeToggle />
-
           <motion.a
             href={getSectionHref("#contact")}
             aria-current={isContactActive ? "location" : undefined}
@@ -196,6 +194,10 @@ export function Navbar() {
             Contact Me
             <ArrowUpRightIcon className="size-4" />
           </motion.a>
+
+          <motion.div variants={navigationItemVariants}>
+            <ThemeToggle />
+          </motion.div>
         </motion.div>
 
         <div className="flex items-center gap-2.5 lg:hidden">
