@@ -5,6 +5,7 @@ export type Project = {
   description: string;
   summary: string;
   technologies: string[];
+  problems?: string[];
   features: string[];
   outcomes: string[];
   accent: "ember" | "violet" | "emerald";

@@ -11,6 +11,7 @@ import {
   ArrowUpRightIcon,
   CheckIcon,
   GithubIcon,
+  TargetIcon,
 } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { WindowCard } from "@/components/ui/WindowCard";
@@ -154,8 +155,31 @@ export default async function ProjectDetailPage({
                   {project.summary}
                 </p>
 
+                {project.problems && project.problems.length > 0 && (
+                  <>
+                    <div className="my-8 h-px bg-zinc-200 dark:bg-white/10" />
+
+                    <SectionLabel>The Challenge</SectionLabel>
+                    <h2 className="text-2xl font-extrabold tracking-[-0.04em] text-zinc-950 dark:text-white">
+                      Problems Solved
+                    </h2>
+                    <ul className="mt-5 space-y-4">
+                      {project.problems.map((problem) => (
+                        <li
+                          key={problem}
+                          className="flex items-start gap-3.5 text-sm leading-6 text-zinc-600 sm:text-base dark:text-zinc-400"
+                        >
+                          <TargetIcon className="mt-0.5 size-5 shrink-0 text-amber-600 dark:text-amber-400" />
+                          <span>{problem}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
                 <div className="my-8 h-px bg-zinc-200 dark:bg-white/10" />
 
+                <SectionLabel>Impact & Results</SectionLabel>
                 <h2 className="text-2xl font-extrabold tracking-[-0.04em] text-zinc-950 dark:text-white">
                   Key Outcomes
                 </h2>
@@ -163,10 +187,10 @@ export default async function ProjectDetailPage({
                   {project.outcomes.map((outcome) => (
                     <li
                       key={outcome}
-                      className="flex items-start gap-3 text-sm leading-6 text-zinc-600 sm:text-base dark:text-zinc-400"
+                      className="flex items-start gap-3.5 text-sm leading-6 text-zinc-600 sm:text-base dark:text-zinc-400"
                     >
                       <CheckIcon className="mt-0.5 size-5 shrink-0 text-zinc-950 dark:text-white" />
-                      {outcome}
+                      <span>{outcome}</span>
                     </li>
                   ))}
                 </ul>

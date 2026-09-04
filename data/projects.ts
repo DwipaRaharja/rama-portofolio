@@ -2,30 +2,6 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
-    id: "showroom-management",
-    title: "Showroom Management System",
-    eyebrow: "Deployed for Real Business",
-    description:
-      "Internal web application streamlining vehicle stock management, customer CRM, sales/purchase transactions, and payments.",
-    summary:
-      "An end-to-end internal system built to organize and optimize daily automotive showroom operations. The platform covers real-time inventory tracking, purchase and sales transactions, customer payment processing, and document archiving.",
-    technologies: ["Laravel", "MySQL", "Tailwind CSS"],
-    imageUrl: "/projects/autohub-dashboard.png",
-    imageAlt: "AutoHub Showroom Management System Dashboard",
-    features: [
-      "Real-time vehicle inventory management",
-      "Comprehensive sales & purchase transactions",
-      "Customer payment processing and document tracking",
-    ],
-    outcomes: [
-      "Centralized stock, transactions, payments, and archives into a single unified system",
-      "Enhanced operational transparency and eliminated manual tracking errors",
-      "Significantly streamlined administrative workflow for showroom staff",
-    ],
-    repositoryUrl: "https://github.com/DwipaRaharja/app_autoHub.git",
-    accent: "ember",
-  },
-  {
     id: "showroom-app",
     title: "Showroom Management App",
     eyebrow: "Enterprise Dealership ERP",
@@ -42,6 +18,12 @@ export const projects: Project[] = [
     ],
     imageUrl: "/projects/showroom-v2-preview.png",
     imageAlt: "Showroom Management App v2 Interface",
+    problems: [
+      "Manual vehicle cost tracking (repairs, detailing, and transport overheads) in fragmented spreadsheets led to inaccurate net margins and delayed inventory valuation.",
+      "Complex multi-stage vehicle sales and leasing financing lacked unified invoicing, payment tracking, and real-time transaction visibility.",
+      "Physical vehicle handovers and legal document transfers (mutasi BPKB/STNK) lacked digital audit trails, photo verification, and formal BAST certificates.",
+      "Vulnerability to data loss and business disruption due to the absence of automated database snapshot backups.",
+    ],
     features: [
       "Real-time car inventory with capital, repair, and transport valuation",
       "Multi-stage sales lifecycle with invoice generator and leasing financing support",
@@ -66,6 +48,11 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     imageUrl: "/projects/ramadwipa-portfolio-home.png",
     imageAlt: "Ramadwipa Portfolio Website Home Interface",
+    problems: [
+      "Scattered representation of engineering repositories, skill stacks, and credentials across disconnected platforms.",
+      "Static resume documents and conventional portfolios fail to showcase real-world frontend motion physics, responsive design systems, and software craftsmanship.",
+      "High-friction inquiry processes that caused communication delays between prospective clients, recruiters, and the developer.",
+    ],
     features: [
       "Interactive developer profile & featured projects showcase",
       "High-performance scroll-driven and CLI animations",
