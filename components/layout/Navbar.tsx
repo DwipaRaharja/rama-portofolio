@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { ArrowUpRightIcon, CloseIcon, MenuIcon } from "@/components/ui/Icons";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import {
   PORTFOLIO_INTRO_EVENT,
   shouldPlayPortfolioIntro,
@@ -194,15 +193,9 @@ export function Navbar() {
             Contact Me
             <ArrowUpRightIcon className="size-4" />
           </motion.a>
-
-          <motion.div variants={navigationItemVariants}>
-            <ThemeToggle />
-          </motion.div>
         </motion.div>
 
         <div className="flex items-center gap-2.5 lg:hidden">
-          <ThemeToggle />
-
           <motion.button
             type="button"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}

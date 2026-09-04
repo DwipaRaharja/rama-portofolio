@@ -9,6 +9,7 @@ import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 import "./globals.css";
 
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Navbar />
             {children}
             <Footer />
+            <ThemeToggle />
           </MotionProvider>
         </ThemeProvider>
       </body>
