@@ -79,7 +79,7 @@ export function EducationSection() {
             className="absolute left-1/2 top-1/2 z-10 h-5 w-px -translate-x-1/2 -translate-y-1/2 md:hidden"
           >
             <motion.span
-              className="absolute inset-0 origin-top bg-white/30"
+              className="absolute inset-0 origin-top bg-zinc-400/70 dark:bg-white/30"
               variants={{
                 hidden: { scaleY: 0 },
                 visible: {
@@ -93,7 +93,7 @@ export function EducationSection() {
               }}
             />
             <motion.span
-              className="absolute -left-[3px] -top-1 size-[7px] rounded-full bg-white/60"
+              className="absolute -left-[3px] -top-1 size-[7px] rounded-full bg-zinc-600 dark:bg-white/60"
               variants={{
                 hidden: { opacity: 0, scale: 0 },
                 visible: {
@@ -104,7 +104,7 @@ export function EducationSection() {
               }}
             />
             <motion.span
-              className="absolute -bottom-1 -left-[3px] size-[7px] rounded-full bg-white"
+              className="absolute -bottom-1 -left-[3px] size-[7px] rounded-full bg-zinc-950 dark:bg-white"
               variants={{
                 hidden: { opacity: 0, scale: 0 },
                 visible: {
@@ -115,7 +115,7 @@ export function EducationSection() {
               }}
             />
             <motion.span
-              className="absolute -bottom-[6px] -left-[6px] size-[13px] rounded-full border-2 border-white/80 bg-white/20"
+              className="absolute -bottom-[6px] -left-[6px] size-[13px] rounded-full border-2 border-zinc-950/70 bg-zinc-900/20 dark:border-white/80 dark:bg-white/20"
               variants={shouldReduceMotion ? undefined : endpointPulse}
             />
           </div>
@@ -127,7 +127,7 @@ export function EducationSection() {
           >
             {/* Step 1: Branch horizontal atas dari Card 1 */}
             <motion.span
-              className="absolute left-0 top-0 h-px w-1/2 origin-left bg-white/30"
+              className="absolute left-0 top-0 h-px w-1/2 origin-left bg-zinc-400/70 dark:bg-white/30"
               variants={{
                 hidden: { scaleX: 0 },
                 visible: {
@@ -142,7 +142,7 @@ export function EducationSection() {
             />
             {/* Step 2: Branch vertikal ke bawah */}
             <motion.span
-              className="absolute left-1/2 top-0 h-full w-px origin-top bg-white/30"
+              className="absolute left-1/2 top-0 h-full w-px origin-top bg-zinc-400/70 dark:bg-white/30"
               variants={{
                 hidden: { scaleY: 0 },
                 visible: {
@@ -157,7 +157,7 @@ export function EducationSection() {
             />
             {/* Step 3: Branch horizontal bawah menuju Card 2 */}
             <motion.span
-              className="absolute bottom-0 left-1/2 h-px w-1/2 origin-left bg-white/30"
+              className="absolute bottom-0 left-1/2 h-px w-1/2 origin-left bg-zinc-400/70 dark:bg-white/30"
               variants={{
                 hidden: { scaleX: 0 },
                 visible: {
@@ -172,7 +172,7 @@ export function EducationSection() {
             />
             {/* Start point dot at Card 1 */}
             <motion.span
-              className="absolute -left-[3px] -top-[3px] size-[7px] rounded-full bg-white/60 shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+              className="absolute -left-[3px] -top-[3px] size-[7px] rounded-full bg-zinc-600 shadow-[0_0_8px_rgba(0,0,0,0.15)] dark:bg-white/60 dark:shadow-[0_0_8px_rgba(255,255,255,0.4)]"
               variants={{
                 hidden: { opacity: 0, scale: 0 },
                 visible: {
@@ -184,7 +184,7 @@ export function EducationSection() {
             />
             {/* Endpoint dot at Card 2 */}
             <motion.span
-              className="absolute -bottom-[3px] -right-[3px] size-[7px] rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+              className="absolute -bottom-[3px] -right-[3px] size-[7px] rounded-full bg-zinc-950 shadow-[0_0_8px_rgba(0,0,0,0.25)] dark:bg-white dark:shadow-[0_0_8px_rgba(255,255,255,0.8)]"
               variants={{
                 hidden: { opacity: 0, scale: 0 },
                 visible: {
@@ -196,7 +196,7 @@ export function EducationSection() {
             />
             {/* Pulsing glow on endpoint */}
             <motion.span
-              className="absolute -bottom-[6px] -right-[6px] size-[13px] rounded-full border-2 border-white/80 bg-white/20"
+              className="absolute -bottom-[6px] -right-[6px] size-[13px] rounded-full border-2 border-zinc-950/70 bg-zinc-900/20 dark:border-white/80 dark:bg-white/20"
               variants={shouldReduceMotion ? undefined : endpointPulse}
             />
           </div>
