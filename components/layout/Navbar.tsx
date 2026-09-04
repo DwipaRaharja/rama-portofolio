@@ -71,6 +71,7 @@ export function Navbar() {
       "tech-stack",
       "education",
       "portfolio",
+      "testimonials",
       "contact",
     ];
 

@@ -8,13 +8,14 @@ export const projects: Project[] = [
     description:
       "Modern automotive enterprise platform featuring reactive inventory valuation, vehicle handover workflows, BAST printing, and document mutasi tracking.",
     summary:
-      "A modern, full-stack showroom enterprise management platform built for Telaga Berlian Management. Engineered with Laravel, Inertia.js React 19, and TypeScript, the system handles real-time vehicle capital valuation, multi-stage sales transactions, financing integrations, legal document mutasi processes, and automated database backups.",
+      "A modern, full-stack showroom enterprise management platform built for Telaga Berlian Management. Engineered with Laravel, Inertia.js React 19, TypeScript, and TanStack Table, the system handles real-time vehicle capital valuation, multi-stage sales transactions, financing integrations, legal document mutasi processes, and automated database backups.",
     technologies: [
       "Laravel",
       "Inertia.js",
       "React",
       "TypeScript",
       "Tailwind CSS",
+      "TanStack Table",
     ],
     imageUrl: "/projects/showroom-v2-preview.png",
     imageAlt: "Showroom Management App v2 Interface",
@@ -25,7 +26,7 @@ export const projects: Project[] = [
       "Vulnerability to data loss and business disruption due to the absence of automated database snapshot backups.",
     ],
     features: [
-      "Real-time car inventory with capital, repair, and transport valuation",
+      "Real-time vehicle inventory data grid powered by TanStack Table with capital, repair, and transport valuation",
       "Multi-stage sales lifecycle with invoice generator and leasing financing support",
       "Vehicle handover timeline, BAST certificate printing, and mutasi process tracking",
     ],

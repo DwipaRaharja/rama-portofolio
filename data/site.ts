@@ -4,6 +4,7 @@ export const navigationItems = [
   { label: "Tech Stack", href: "#tech-stack" },
   { label: "Education", href: "#education" },
   { label: "Portfolio", href: "#portfolio" },
+  { label: "Testimonials", href: "#testimonials" },
 ] as const;
 
 export const siteConfig = {

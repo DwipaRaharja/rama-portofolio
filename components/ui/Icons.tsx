@@ -29,4 +29,6 @@ export {
   WhatsappLogoIcon as WhatsappIcon,
   XIcon as CloseIcon,
   EnvelopeIcon as EnvelopeIcon,
+  QuotesIcon,
+  StarIcon,
 } from "@phosphor-icons/react/ssr";
