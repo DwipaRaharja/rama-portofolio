@@ -90,7 +90,7 @@ export function AboutFlowLines({ className = "" }: DecorationProps) {
 
 export function SectionLabel({ children }: { children: string }) {
   return (
-    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-400">
+    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400">
       {children}
     </p>
   );

@@ -20,6 +20,8 @@ export {
   PaperPlaneTiltIcon as SendIcon,
   PencilRulerIcon,
   StudentIcon,
+  SunIcon,
+  MoonIcon,
   RocketLaunchIcon,
   SparkleIcon,
   TargetIcon,

@@ -65,7 +65,7 @@ export function ProjectPreview({
   if (project.imageUrl) {
     return (
       <div
-        className={`relative w-full overflow-hidden rounded-xl border border-black/15 bg-[#111827] shadow-[0_12px_34px_-22px_rgba(0,0,0,0.45)] ${
+        className={`relative w-full overflow-hidden rounded-xl border border-zinc-200 bg-zinc-100 shadow-[0_12px_34px_-22px_rgba(0,0,0,0.15)] dark:border-white/15 dark:bg-[#111827] dark:shadow-[0_12px_34px_-22px_rgba(0,0,0,0.45)] ${
           detail ? "aspect-[2/1] sm:aspect-[12/5] lg:aspect-[5/2]" : "aspect-[2/1]"
         }`}
       >

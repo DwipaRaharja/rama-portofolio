@@ -7,6 +7,8 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { PortfolioIntro } from "@/components/layout/PortfolioIntro";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { MotionProvider } from "@/components/providers/MotionProvider";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 import "./globals.css";
 
@@ -66,16 +68,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${plusJakartaSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#050505] font-sans text-white">
-        <PortfolioIntro />
-        <PageTransition />
-        <SmoothScroll />
-        <ScrollProgress />
-        <Navbar />
-        {children}
-        <Footer />
+      <body className="min-h-full bg-[var(--background)] font-sans text-[var(--foreground)] transition-colors duration-300">
+        <ThemeProvider>
+          <MotionProvider>
+            <PortfolioIntro />
+            <PageTransition />
+            <SmoothScroll />
+            <ScrollProgress />
+            <Navbar />
+            {children}
+            <Footer />
+          </MotionProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -50,18 +50,18 @@ export function EducationSection() {
     <section
       id="education"
       aria-labelledby="education-title"
-      className="relative scroll-mt-24 pb-20 pt-6 text-white sm:pb-24 sm:pt-8 lg:pb-28"
+      className="relative scroll-mt-24 pb-20 pt-6 text-zinc-950 dark:text-white sm:pb-24 sm:pt-8 lg:pb-28"
     >
       <Container>
         <Reveal className="max-w-2xl">
           <SectionLabel>Education</SectionLabel>
           <h3
             id="education-title"
-            className="text-3xl font-extrabold tracking-[-0.045em] text-white sm:text-4xl"
+            className="text-3xl font-extrabold tracking-[-0.045em] text-zinc-950 dark:text-white sm:text-4xl"
           >
             Academic Background
           </h3>
-          <p className="mt-3 text-sm leading-6 text-zinc-400">
+          <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
             The educational journey that established my technical foundation,
             discipline, and problem-solving mindset for digital engineering.
           </p>
@@ -224,9 +224,9 @@ export function EducationSection() {
                   }}
                 >
                   <div className="group/education">
-                    <article className="surface-transition flex min-h-72 transform-gpu flex-col rounded-2xl border border-white/15 bg-[#0e0e11] p-6 text-white will-change-transform group-hover/education:-translate-y-1.5 group-hover/education:border-white/40 group-hover/education:bg-[#141419] group-hover/education:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(255,255,255,0.04)] sm:p-7">
+                    <article className="surface-transition flex min-h-72 transform-gpu flex-col rounded-2xl border border-zinc-200/90 bg-white p-6 text-zinc-950 shadow-sm will-change-transform group-hover/education:-translate-y-1.5 group-hover/education:border-zinc-350 group-hover/education:bg-zinc-50/50 group-hover/education:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] dark:border-white/15 dark:bg-[#0e0e11] dark:text-white dark:shadow-none dark:group-hover/education:border-white/40 dark:group-hover/education:bg-[#141419] dark:group-hover/education:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(255,255,255,0.04)] sm:p-7">
                       <div className="flex items-start justify-between gap-4">
-                        <span className="surface-transition font-mono text-xs font-extrabold tracking-[0.18em] text-zinc-500 group-hover/education:tracking-[0.24em] group-hover/education:text-zinc-300">
+                        <span className="surface-transition font-mono text-xs font-extrabold tracking-[0.18em] text-zinc-400 group-hover/education:tracking-[0.24em] group-hover/education:text-zinc-700 dark:text-zinc-500 dark:group-hover/education:text-zinc-300">
                           {number}
                         </span>
                         <motion.div
@@ -243,33 +243,33 @@ export function EducationSection() {
                               },
                             },
                           }}
-                          className="surface-transition grid size-12 place-items-center rounded-full border border-white/20 bg-[#16161a] text-white group-hover/education:scale-110 group-hover/education:border-white/60 group-hover/education:bg-white/10 group-hover/education:shadow-[0_0_20px_rgba(255,255,255,0.12)]"
+                          className="surface-transition grid size-12 place-items-center rounded-full border border-zinc-200 bg-zinc-100 text-zinc-900 group-hover/education:scale-110 group-hover/education:border-zinc-350 group-hover/education:bg-white group-hover/education:shadow-md dark:border-white/20 dark:bg-[#16161a] dark:text-white dark:group-hover/education:border-white/60 dark:group-hover/education:bg-white/10 dark:group-hover/education:shadow-[0_0_20px_rgba(255,255,255,0.12)]"
                         >
                           <Icon className="surface-transition size-6 group-hover/education:scale-110 group-hover/education:-rotate-12" />
                         </motion.div>
                       </div>
 
                       <div className="mt-auto pt-10">
-                        <p className="surface-transition text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-400 group-hover/education:text-zinc-200">
+                        <p className="surface-transition text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-500 group-hover/education:text-zinc-700 dark:text-zinc-400 dark:group-hover/education:text-zinc-200">
                           {period}
                         </p>
-                        <h4 className="mt-3 text-2xl font-extrabold tracking-[-0.045em] text-white sm:text-[1.65rem]">
+                        <h4 className="mt-3 text-2xl font-extrabold tracking-[-0.045em] text-zinc-950 dark:text-white sm:text-[1.65rem]">
                           {institution}
                         </h4>
-                        <p className="surface-transition mt-2 text-sm leading-6 text-zinc-400 group-hover/education:text-zinc-300">
+                        <p className="surface-transition mt-2 text-sm leading-6 text-zinc-600 group-hover/education:text-zinc-800 dark:text-zinc-400 dark:group-hover/education:text-zinc-300">
                           {program}
                         </p>
 
                         {/* Status Capsule */}
                         <div className="mt-4 flex items-center">
                           {status === "Active Student" ? (
-                            <span className="surface-transition inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.08] px-2.5 py-1 text-[11px] font-semibold text-emerald-300 group-hover/education:border-emerald-400/60 group-hover/education:bg-emerald-500/15 group-hover/education:text-emerald-200 group-hover/education:shadow-[0_0_16px_rgba(16,185,129,0.15)]">
-                              <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                            <span className="surface-transition inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/[0.08] px-2.5 py-1 text-[11px] font-semibold text-emerald-600 group-hover/education:border-emerald-500/60 group-hover/education:bg-emerald-500/15 group-hover/education:text-emerald-700 dark:text-emerald-300 dark:group-hover/education:text-emerald-200 dark:group-hover/education:shadow-[0_0_16px_rgba(16,185,129,0.15)]">
+                              <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.8)] dark:bg-emerald-400" />
                               {status}
                             </span>
                           ) : (
-                            <span className="surface-transition inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.04] px-2.5 py-1 text-[11px] font-semibold text-zinc-300 group-hover/education:border-white/35 group-hover/education:bg-white/10 group-hover/education:text-white group-hover/education:shadow-[0_0_12px_rgba(255,255,255,0.05)]">
-                              <CheckIcon className="size-3 text-zinc-400 group-hover/education:text-white" />
+                            <span className="surface-transition inline-flex items-center gap-1.5 rounded-full border border-zinc-200 bg-zinc-100 px-2.5 py-1 text-[11px] font-semibold text-zinc-700 group-hover/education:border-zinc-300 group-hover/education:bg-zinc-200 group-hover/education:text-zinc-900 dark:border-white/15 dark:bg-white/[0.04] dark:text-zinc-300 dark:group-hover/education:border-white/35 dark:group-hover/education:bg-white/10 dark:group-hover/education:text-white">
+                              <CheckIcon className="size-3 text-zinc-500 group-hover/education:text-zinc-900 dark:text-zinc-400 dark:group-hover/education:text-white" />
                               {status}
                             </span>
                           )}

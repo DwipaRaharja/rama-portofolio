@@ -55,7 +55,7 @@ export function SocialLinks({
             rel={opensInNewTab ? "noopener noreferrer" : undefined}
             aria-label={`${label} Ramadwipa${opensInNewTab ? " (buka di tab baru)" : ""}`}
             title={label}
-            className="interactive-transition grid size-10 place-items-center rounded-full border border-white/20 bg-[#121215] text-white hover:-translate-y-1 hover:border-white hover:bg-white hover:text-[#050505] hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+            className="interactive-transition grid size-10 place-items-center rounded-full border border-zinc-300 bg-white text-zinc-700 hover:-translate-y-1 hover:border-zinc-950 hover:bg-zinc-950 hover:text-white hover:shadow-md dark:border-white/20 dark:bg-[#121215] dark:text-white dark:hover:border-white dark:hover:bg-white dark:hover:text-[#050505] dark:hover:shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           >
             <Icon className="size-[22px]" />
           </a>

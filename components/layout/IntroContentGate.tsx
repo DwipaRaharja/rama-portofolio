@@ -27,11 +27,11 @@ export function IntroContentGate({ children }: { children: ReactNode }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={
         isReady
           ? { opacity: 1, y: 0 }
-          : { opacity: 0, y: shouldReduceMotion ? 0 : 16 }
+          : { opacity: 0, y: 16 }
       }
       transition={{
         duration: shouldReduceMotion ? 0 : 0.48,
