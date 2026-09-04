@@ -48,8 +48,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               No Preview Image
             </div>
           )}
-          {/* Subtle Bottom Shadow Gradient */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white to-transparent dark:from-[#0e0e11]" />
         </div>
 
         {/* Card Content Body - Compact Padding */}
