@@ -171,7 +171,7 @@ export function PageTransition() {
           role="status"
           aria-live="polite"
           aria-label="Loading page"
-          className="fixed inset-0 z-[120] grid min-h-[100svh] place-items-center overflow-hidden bg-[#050505]/85 px-4 py-8 text-white backdrop-blur-xl"
+          className="fixed inset-0 z-[120] grid min-h-[100svh] place-items-center overflow-hidden bg-[#f8f9fa]/85 px-4 py-8 text-zinc-950 backdrop-blur-xl dark:bg-[#050505]/85 dark:text-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -182,18 +182,18 @@ export function PageTransition() {
         >
           {/* Signature Background Tech Dot Grid with Radial Mask */}
           <div
-            className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_65%_at_50%_50%,#000_35%,transparent_100%)]"
+            className="pointer-events-none absolute inset-0 [background-image:radial-gradient(rgba(0,0,0,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_65%_at_50%_50%,#000_35%,transparent_100%)] dark:[background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)]"
             aria-hidden="true"
           />
 
           {/* Subtle Ambient Radial Glow */}
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[440px] rounded-full bg-white/[0.03] blur-3xl" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[440px] rounded-full bg-zinc-900/[0.04] blur-3xl dark:bg-white/[0.03]" />
           </div>
 
           {/* Card with 3 Circles Topbar */}
           <motion.div
-            className="relative z-10 w-full max-w-[460px] overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0e]/95 shadow-[0_25px_80px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.03)] backdrop-blur-2xl"
+            className="relative z-10 w-full max-w-[460px] overflow-hidden rounded-2xl border border-zinc-200 bg-white/95 text-zinc-950 shadow-[0_25px_80px_rgba(0,0,0,0.12)] backdrop-blur-2xl dark:border-white/15 dark:bg-[#0a0a0e]/95 dark:text-white dark:shadow-[0_25px_80px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.03)]"
             initial={
               shouldReduceMotion
                 ? { opacity: 1 }
@@ -211,7 +211,7 @@ export function PageTransition() {
             }}
           >
             {/* Window Topbar with 3 Circles */}
-            <div className="flex items-center justify-between border-b border-white/10 bg-[#121216] px-4 py-3">
+            <div className="flex items-center justify-between border-b border-zinc-200 bg-[#f4f5f8] px-4 py-3 dark:border-white/10 dark:bg-[#121216]">
               {/* The 3 Circles (Traffic Light Dots) */}
               <div className="flex items-center gap-2" aria-hidden="true">
                 <span className="size-3 rounded-full bg-[#ff5f56] shadow-[0_0_6px_rgba(255,95,86,0.45)]" />
@@ -220,7 +220,7 @@ export function PageTransition() {
               </div>
 
               {/* Breadcrumb Path */}
-              <p className="font-mono text-[11px] font-semibold text-zinc-400">
+              <p className="font-mono text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">
                 {transitionInfo.path}
               </p>
 
@@ -231,12 +231,12 @@ export function PageTransition() {
             {/* Window Body: Big "Loading" text with 3 animated dots */}
             <div className="px-6 py-10 sm:py-12 text-center">
               {/* Big Text "Loading" + 3 Animated Dots */}
-              <div className="flex items-baseline justify-center gap-2 text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+              <div className="flex items-baseline justify-center gap-2 text-4xl sm:text-5xl font-extrabold tracking-tight text-zinc-950 dark:text-white">
                 <span>Loading</span>
                 {/* 3 Animated Dots */}
                 <span className="inline-flex items-center gap-1.5 pb-1">
                   <motion.span
-                    className="size-2.5 sm:size-3 rounded-full bg-white"
+                    className="size-2.5 sm:size-3 rounded-full bg-zinc-950 dark:bg-white"
                     animate={
                       shouldReduceMotion
                         ? { opacity: [0.3, 1, 0.3] }
@@ -250,7 +250,7 @@ export function PageTransition() {
                     }}
                   />
                   <motion.span
-                    className="size-2.5 sm:size-3 rounded-full bg-white"
+                    className="size-2.5 sm:size-3 rounded-full bg-zinc-950 dark:bg-white"
                     animate={
                       shouldReduceMotion
                         ? { opacity: [0.3, 1, 0.3] }
@@ -264,7 +264,7 @@ export function PageTransition() {
                     }}
                   />
                   <motion.span
-                    className="size-2.5 sm:size-3 rounded-full bg-white"
+                    className="size-2.5 sm:size-3 rounded-full bg-zinc-950 dark:bg-white"
                     animate={
                       shouldReduceMotion
                         ? { opacity: [0.3, 1, 0.3] }
@@ -281,7 +281,7 @@ export function PageTransition() {
               </div>
 
               {/* Destination Context Subtitle */}
-              <p className="mt-4 text-xs font-mono font-medium text-zinc-400 sm:text-sm">
+              <p className="mt-4 text-xs font-mono font-medium text-zinc-600 sm:text-sm dark:text-zinc-400">
                 {transitionInfo.label}
               </p>
             </div>

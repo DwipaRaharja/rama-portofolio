@@ -82,7 +82,7 @@ export function PortfolioIntro() {
 
   if (shouldShow === null) {
     return (
-      <div className="fixed inset-0 z-[100] bg-black" aria-hidden="true" />
+      <div className="fixed inset-0 z-[100] bg-[var(--background)]" aria-hidden="true" />
     );
   }
 
@@ -93,7 +93,7 @@ export function PortfolioIntro() {
           key="portfolio-intro"
           role="status"
           aria-label="Opening Ramadwipa developer portfolio"
-          className="fixed inset-0 z-[100] flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#050505] px-4 py-8 text-white"
+          className="fixed inset-0 z-[100] flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#f8f9fa] px-4 py-8 text-zinc-950 dark:bg-[#050505] dark:text-white"
           initial={{ opacity: 1, y: 0 }}
           exit={{ y: "-102%" }}
           transition={{
@@ -103,13 +103,13 @@ export function PortfolioIntro() {
         >
           {/* Subtle Background Tech Dot Grid with Radial Mask */}
           <div
-            className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_65%_at_50%_50%,#000_35%,transparent_100%)]"
+            className="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(rgba(0,0,0,0.08)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_65%_at_50%_50%,#000_35%,transparent_100%)] dark:[background-image:radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)]"
             aria-hidden="true"
           />
 
           {/* Terminal Window */}
           <motion.div
-            className="relative z-10 w-full max-w-[620px] overflow-hidden rounded-xl border border-white/15 bg-[#0a0a0e]/95 shadow-[0_25px_80px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.03)] backdrop-blur-md"
+            className="relative z-10 w-full max-w-[620px] overflow-hidden rounded-xl border border-zinc-200 bg-white/95 text-zinc-950 shadow-[0_25px_80px_rgba(0,0,0,0.12)] backdrop-blur-md dark:border-white/15 dark:bg-[#0a0a0e]/95 dark:text-white dark:shadow-[0_25px_80px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.03)]"
             initial={
               shouldReduceMotion
                 ? { opacity: 1 }
@@ -123,7 +123,7 @@ export function PortfolioIntro() {
             }}
           >
             {/* Terminal macOS Header Bar */}
-            <div className="flex items-center justify-between border-b border-white/10 bg-[#121216] px-4 py-2.5">
+            <div className="flex items-center justify-between border-b border-zinc-200 bg-[#f4f5f8] px-4 py-2.5 dark:border-white/10 dark:bg-[#121216]">
               {/* Traffic Light Dots */}
               <div className="flex items-center gap-1.5">
                 <span className="size-2.5 rounded-full bg-[#ff5f56] shadow-[0_0_5px_rgba(255,95,86,0.35)]" />
@@ -132,13 +132,13 @@ export function PortfolioIntro() {
               </div>
 
               {/* Title / Path */}
-              <p className="font-mono text-[11px] font-semibold text-zinc-400">
+              <p className="font-mono text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">
                 ramadwipa@developer: ~/portfolio
               </p>
 
               {/* Status Pill */}
-              <span className="inline-flex items-center gap-1 text-[10px] font-mono text-zinc-500">
-                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="inline-flex items-center gap-1 text-[10px] font-mono text-zinc-500 dark:text-zinc-400">
+                <span className="size-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                 live
               </span>
             </div>
@@ -150,9 +150,9 @@ export function PortfolioIntro() {
                 initial={{ opacity: 0, x: -6 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.3 }}
-                className="flex items-center gap-2 text-zinc-300"
+                className="flex items-center gap-2 text-zinc-700 dark:text-zinc-300"
               >
-                <span className="font-bold text-white">$</span>
+                <span className="font-bold text-zinc-950 dark:text-white">$</span>
                 <span>ramadwipa --init-system</span>
               </motion.div>
 
@@ -161,11 +161,11 @@ export function PortfolioIntro() {
                 initial={{ opacity: 0, x: -6 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 0.65 }}
-                className="mt-3 flex items-center gap-2 text-zinc-400"
+                className="mt-3 flex items-center gap-2 text-zinc-600 dark:text-zinc-400"
               >
-                <span className="text-emerald-400">✔</span>
+                <span className="text-emerald-600 dark:text-emerald-400">✔</span>
                 <span>Role:</span>
-                <span className="font-semibold text-white">Full Stack Developer</span>
+                <span className="font-semibold text-zinc-950 dark:text-white">Full Stack Developer</span>
               </motion.div>
 
               {/* Line 3: Stack */}
@@ -173,11 +173,11 @@ export function PortfolioIntro() {
                 initial={{ opacity: 0, x: -6 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 1.0 }}
-                className="mt-2 flex flex-wrap items-center gap-2 text-zinc-400"
+                className="mt-2 flex flex-wrap items-center gap-2 text-zinc-600 dark:text-zinc-400"
               >
-                <span className="text-emerald-400">✔</span>
+                <span className="text-emerald-600 dark:text-emerald-400">✔</span>
                 <span>Stack:</span>
-                <span className="text-zinc-200">Next.js · TypeScript · Laravel · MySQL</span>
+                <span className="text-zinc-800 dark:text-zinc-200">Next.js · TypeScript · Laravel · MySQL</span>
               </motion.div>
 
               {/* Line 4: Objective */}
@@ -185,22 +185,22 @@ export function PortfolioIntro() {
                 initial={{ opacity: 0, x: -6 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: shouldReduceMotion ? 0 : 1.35 }}
-                className="mt-2 flex items-center gap-2 text-zinc-400"
+                className="mt-2 flex items-center gap-2 text-zinc-600 dark:text-zinc-400"
               >
-                <span className="text-emerald-400">✔</span>
+                <span className="text-emerald-600 dark:text-emerald-400">✔</span>
                 <span>Focus:</span>
-                <span className="text-white">Digital Solutions for Business</span>
+                <span className="text-zinc-950 dark:text-white">Digital Solutions for Business</span>
               </motion.div>
 
               {/* Line 5: Progress Bar */}
-              <div className="mt-6 border-t border-white/10 pt-4">
-                <div className="mb-2 flex items-center justify-between text-[11px] text-zinc-400">
+              <div className="mt-6 border-t border-zinc-200 pt-4 dark:border-white/10">
+                <div className="mb-2 flex items-center justify-between text-[11px] text-zinc-600 dark:text-zinc-400">
                   <span>Launching Portfolio v2.0</span>
-                  <span className="font-bold text-white">{progress}%</span>
+                  <span className="font-bold text-zinc-950 dark:text-white">{progress}%</span>
                 </div>
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-white/10">
                   <motion.div
-                    className="h-full rounded-full bg-white transition-all duration-100 ease-out"
+                    className="h-full rounded-full bg-zinc-950 transition-all duration-100 ease-out dark:bg-white"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
@@ -212,7 +212,7 @@ export function PortfolioIntro() {
           <motion.button
             type="button"
             onClick={closeIntro}
-            className="interactive-transition absolute bottom-5 right-5 rounded-full border border-white/20 bg-white/[0.04] px-4 py-1.5 font-mono text-xs font-semibold text-zinc-400 hover:border-white hover:text-white sm:bottom-8 sm:right-8"
+            className="interactive-transition absolute bottom-5 right-5 rounded-full border border-zinc-300 bg-white/80 px-4 py-1.5 font-mono text-xs font-semibold text-zinc-700 hover:border-zinc-950 hover:text-zinc-950 dark:border-white/20 dark:bg-white/[0.04] dark:text-zinc-400 dark:hover:border-white dark:hover:text-white sm:bottom-8 sm:right-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.5 }}
