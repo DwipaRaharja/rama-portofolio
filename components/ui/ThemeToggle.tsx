@@ -3,6 +3,10 @@
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 import { motion } from "motion/react";
+import {
+  ThemeAnimationType,
+  useModeAnimation,
+} from "react-theme-switch-animation";
 import { MoonIcon, SunIcon } from "@/components/ui/Icons";
 
 const emptySubscribe = () => () => {};
@@ -15,6 +19,17 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     () => false
   );
 
+  const isDark = resolvedTheme === "dark";
+
+  const { ref, toggleSwitchTheme } = useModeAnimation({
+    animationType: ThemeAnimationType.CIRCLE,
+    duration: 1150,
+    isDarkMode: isDark,
+    onDarkModeChange: (willBeDark) => {
+      setTheme(willBeDark ? "dark" : "light");
+    },
+  });
+
   if (!mounted) {
     return (
       <div
@@ -24,12 +39,11 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     );
   }
 
-  const isDark = resolvedTheme === "dark";
-
   return (
     <motion.button
+      ref={ref}
       type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      onClick={toggleSwitchTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
       whileHover={{ scale: 1.08 }}
@@ -38,16 +52,22 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     >
       <motion.div
         key={isDark ? "dark" : "light"}
-        initial={{ rotate: -45, scale: 0.7, opacity: 0 }}
+        initial={{ rotate: -55, scale: 0.65, opacity: 0 }}
         animate={{ rotate: 0, scale: 1, opacity: 1 }}
-        exit={{ rotate: 45, scale: 0.7, opacity: 0 }}
-        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        exit={{ rotate: 55, scale: 0.65, opacity: 0 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="flex items-center justify-center"
       >
         {isDark ? (
-          <MoonIcon className="size-5 text-zinc-200 transition-colors group-hover:text-white sm:size-[22px]" weight="bold" />
+          <MoonIcon
+            className="size-5 text-zinc-200 transition-colors group-hover:text-white sm:size-[22px]"
+            weight="bold"
+          />
         ) : (
-          <SunIcon className="size-5 text-amber-500 transition-colors group-hover:text-amber-600 sm:size-[22px]" weight="bold" />
+          <SunIcon
+            className="size-5 text-amber-500 transition-colors group-hover:text-amber-600 sm:size-[22px]"
+            weight="bold"
+          />
         )}
       </motion.div>
     </motion.button>
