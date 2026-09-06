@@ -4,7 +4,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "telaga-berlian",
     name: "Telaga Berlian Motor",
-    role: "Automotive Dealership",
+    role: "Used Car Business",
     company: "",
     avatarInitials: "TB",
     rating: 5,

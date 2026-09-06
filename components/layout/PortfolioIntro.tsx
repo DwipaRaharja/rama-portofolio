@@ -177,7 +177,7 @@ export function PortfolioIntro() {
               >
                 <span className="text-emerald-600 dark:text-emerald-400">✔</span>
                 <span>Stack:</span>
-                <span className="text-zinc-800 dark:text-zinc-200">Next.js · TypeScript · Laravel · MySQL</span>
+                <span className="text-zinc-800 dark:text-zinc-200">Next.js · TypeScript · Tailwind CSS</span>
               </motion.div>
 
               {/* Line 4: Objective */}
@@ -189,7 +189,7 @@ export function PortfolioIntro() {
               >
                 <span className="text-emerald-600 dark:text-emerald-400">✔</span>
                 <span>Focus:</span>
-                <span className="text-zinc-950 dark:text-white">Digital Solutions for Business</span>
+                <span className="text-zinc-950 dark:text-white">Personal Portfolio</span>
               </motion.div>
 
               {/* Line 5: Progress Bar */}

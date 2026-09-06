@@ -300,7 +300,7 @@ export function ContactSection() {
       {/* Clean & Sleek Popup Modal */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-6">
+          <div data-lenis-prevent className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 sm:p-6">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
