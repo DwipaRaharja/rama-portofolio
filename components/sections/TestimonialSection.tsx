@@ -57,7 +57,11 @@ export function TestimonialSection() {
                 <div className="grid grid-cols-1 gap-6 p-6 sm:p-8 md:grid-cols-12 md:items-center md:gap-8 lg:p-8">
                   {/* Quote Section (Left / Main) */}
                   <div className="md:col-span-8 lg:col-span-8">
-                    <blockquote className="mt-4 text-base sm:text-lg lg:text-base font-normal leading-relaxed text-zinc-800 dark:text-zinc-200">
+                    <QuotesIcon
+                      weight="fill"
+                      className="size-7 sm:size-8 text-zinc-300 transition-colors group-hover:text-zinc-500 dark:text-white/20 dark:group-hover:text-white/40"
+                    />
+                    <blockquote className="mt-3 text-base sm:text-lg lg:text-base font-normal leading-relaxed text-zinc-800 dark:text-zinc-200">
                       &ldquo;{testimonial.quote}&rdquo;
                     </blockquote>
                   </div>
@@ -81,12 +85,16 @@ export function TestimonialSection() {
                         <p className="truncate text-base font-bold text-zinc-950 dark:text-white">
                           {testimonial.name}
                         </p>
-                        <p className="truncate text-xs text-zinc-500 dark:text-zinc-400 sm:text-sm">
-                          {testimonial.role}
-                        </p>
-                        <p className="truncate text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                          {testimonial.company}
-                        </p>
+                        {testimonial.role && (
+                          <p className="truncate text-xs text-zinc-500 dark:text-zinc-400 sm:text-sm">
+                            {testimonial.role}
+                          </p>
+                        )}
+                        {testimonial.company && (
+                          <p className="truncate text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                            {testimonial.company}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
