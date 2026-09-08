@@ -36,13 +36,15 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 36, rotateX: -16, scaleY: 0.94 },
   visible: {
     opacity: 1,
     y: 0,
+    rotateX: 0,
+    scaleY: 1,
     transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
     },
   },
 };
@@ -147,7 +149,7 @@ export function ContactSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 xl:gap-16"
+          className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 xl:gap-16 [perspective:1200px]"
         >
           {/* Left Column: Context & Overview */}
           <div className="max-w-xl">
@@ -174,7 +176,7 @@ export function ContactSection() {
             <motion.div variants={itemVariants} className="mt-6 flex items-center">
               <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/[0.08] px-3.5 py-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
                 <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] dark:bg-emerald-400" />
-                <span>Available for freelance & full-time opportunities</span>
+                <span>Available for freelance</span>
               </div>
             </motion.div>
 

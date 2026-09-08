@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import {
   ArrowRightIcon,
@@ -18,21 +18,48 @@ type ProjectCardProps = {
 };
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 32, scale: 0.96 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{
-        duration: 0.6,
-        delay: 0.06 + index * 0.12,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className="h-full"
-    >
-      <WindowCard
-        className="group/project flex h-full flex-col"
+    <div className="h-full [perspective:1200px]">
+      <motion.div
+        initial={
+          shouldReduceMotion
+            ? { opacity: 0 }
+            : {
+                opacity: 0,
+                y: 56,
+                rotateX: -22,
+                scaleY: 0.9,
+                scaleX: 0.97,
+              }
+        }
+        whileInView={
+          shouldReduceMotion
+            ? { opacity: 1 }
+            : {
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                scaleY: 1,
+                scaleX: 1,
+              }
+        }
+        viewport={{ once: true, amount: 0.12 }}
+        transition={{
+          duration: shouldReduceMotion ? 0.35 : 0.75,
+          delay: shouldReduceMotion ? 0 : 0.08 + index * 0.14,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        style={{
+          transformOrigin: "bottom center",
+          transformStyle: "preserve-3d",
+        }}
+        className="h-full transform-gpu will-change-transform"
       >
+        <WindowCard
+          className="group/project flex h-full flex-col"
+        >
         {/* Screenshot Image Container - Compact 16:9 Aspect */}
         <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-zinc-200 bg-zinc-100 dark:border-white/10 dark:bg-[#18181e]">
           {project.imageUrl ? (
@@ -118,5 +145,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       </WindowCard>
     </motion.div>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/Decorations";
@@ -35,17 +35,19 @@ const techStackGroups = [
   },
 ] as const;
 
-// 1. Kontainer Luar Utama
+// 1. Kontainer Luar Utama (Cylindrical Roll In)
 const sectionVariants: Variants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 56, rotateX: -18, scaleY: 0.93 },
   visible: {
     opacity: 1,
     y: 0,
+    rotateX: 0,
+    scaleY: 1,
     transition: {
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
       when: "beforeChildren",
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
@@ -70,16 +72,17 @@ const cardsContainerVariants: Variants = {
   },
 };
 
-// 4. Fase 1: Card meluncur naik dari bawah ke posisinya
+// 4. Fase 1: Card meluncur naik dari bawah dengan efek gulung silinder
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 48, scale: 0.96 },
+  hidden: { opacity: 0, y: 40, rotateX: -16, scaleY: 0.94 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
+    rotateX: 0,
+    scaleY: 1,
     transition: {
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
       when: "beforeChildren",
       staggerChildren: 0.08,
     },
@@ -135,18 +138,29 @@ const badgeVariants: Variants = {
 };
 
 export function TechStackSection() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="tech-stack"
       className="relative scroll-mt-24 pb-20 pt-6 text-zinc-950 dark:text-white sm:pb-24 sm:pt-8 lg:pb-28"
     >
-      <Container>
+      <Container className="[perspective:1200px]">
         <motion.div
           aria-labelledby="tech-stack-title"
-          variants={sectionVariants}
+          variants={
+            shouldReduceMotion
+              ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+              : sectionVariants
+          }
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.12 }}
+          style={{
+            transformOrigin: "bottom center",
+            transformStyle: "preserve-3d",
+          }}
+          className="transform-gpu will-change-transform"
         >
           {/* Card Utama Berbentuk WindowCard Mockup */}
           <WindowCard
@@ -173,13 +187,21 @@ export function TechStackSection() {
 
               <motion.div
                 variants={cardsContainerVariants}
-                className="mt-8 grid gap-5 sm:grid-cols-2"
+                className="mt-8 grid gap-5 sm:grid-cols-2 [perspective:1000px]"
               >
                 {techStackGroups.map(({ label, technologies, Icon }) => (
                   <motion.article
                     key={label}
-                    variants={cardVariants}
-                    className="group/technology h-full"
+                    variants={
+                      shouldReduceMotion
+                        ? { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+                        : cardVariants
+                    }
+                    style={{
+                      transformOrigin: "bottom center",
+                      transformStyle: "preserve-3d",
+                    }}
+                    className="group/technology h-full transform-gpu will-change-transform"
                   >
                     <div className="surface-transition h-full transform-gpu rounded-xl border border-zinc-200/90 bg-zinc-50/80 p-6 will-change-transform group-hover/technology:-translate-y-1 group-hover/technology:border-zinc-350 group-hover/technology:bg-white group-hover/technology:shadow-lg dark:border-white/15 dark:bg-[#121215] dark:group-hover/technology:border-white/40 dark:group-hover/technology:bg-[#18181c] dark:group-hover/technology:shadow-2xl sm:p-7">
                       {/* Ikon Pop-in */}

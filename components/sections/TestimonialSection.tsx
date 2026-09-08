@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/Decorations";
@@ -10,6 +10,8 @@ import { WindowCard } from "@/components/ui/WindowCard";
 import { testimonials } from "@/data/testimonials";
 
 export function TestimonialSection() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="testimonials"
@@ -34,19 +36,43 @@ export function TestimonialSection() {
         </Reveal>
 
         {/* Wide Horizontal Testimonial Spotlight */}
-        <div className="mt-10 max-w-6xl">
+        <div className="mt-10 max-w-6xl [perspective:1200px]">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
-              initial={{ opacity: 0, y: 32, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.15 }}
+              initial={
+                shouldReduceMotion
+                  ? { opacity: 0 }
+                  : {
+                      opacity: 0,
+                      y: 56,
+                      rotateX: -20,
+                      scaleY: 0.92,
+                      scaleX: 0.98,
+                    }
+              }
+              whileInView={
+                shouldReduceMotion
+                  ? { opacity: 1 }
+                  : {
+                      opacity: 1,
+                      y: 0,
+                      rotateX: 0,
+                      scaleY: 1,
+                      scaleX: 1,
+                    }
+              }
+              viewport={{ once: true, amount: 0.12 }}
               transition={{
-                duration: 0.6,
-                delay: 0.06 + index * 0.12,
-                ease: [0.22, 1, 0.36, 1],
+                duration: shouldReduceMotion ? 0.35 : 0.8,
+                delay: shouldReduceMotion ? 0 : 0.08 + index * 0.14,
+                ease: [0.16, 1, 0.3, 1],
               }}
-              className="w-full"
+              style={{
+                transformOrigin: "bottom center",
+                transformStyle: "preserve-3d",
+              }}
+              className="w-full transform-gpu will-change-transform"
             >
               <WindowCard
                 interactive={false}

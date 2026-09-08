@@ -68,10 +68,10 @@ export function EducationSection() {
         </Reveal>
 
         <motion.div
-          className="relative mt-8 grid gap-5 md:grid-cols-2 md:gap-24"
+          className="relative mt-8 grid gap-5 md:grid-cols-2 md:gap-24 [perspective:1200px]"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
         >
           {/* Mobile Connecting Line */}
           <div
@@ -208,17 +208,29 @@ export function EducationSection() {
               return (
                 <motion.div
                   key={institution}
-                  className={index === 0 ? "md:pb-20" : "md:pt-20"}
+                  className={`${index === 0 ? "md:pb-20" : "md:pt-20"} transform-gpu will-change-transform`}
+                  style={{
+                    transformOrigin: "bottom center",
+                    transformStyle: "preserve-3d",
+                  }}
                   variants={{
-                    hidden: { opacity: 0, y: 36, scale: 0.96 },
+                    hidden: {
+                      opacity: 0,
+                      y: 52,
+                      rotateX: -20,
+                      scaleY: 0.91,
+                      scaleX: 0.98,
+                    },
                     visible: {
                       opacity: 1,
                       y: 0,
-                      scale: 1,
+                      rotateX: 0,
+                      scaleY: 1,
+                      scaleX: 1,
                       transition: {
                         delay: shouldReduceMotion ? 0 : cardDelay,
-                        duration: shouldReduceMotion ? 0.1 : 0.58,
-                        ease: smoothEase,
+                        duration: shouldReduceMotion ? 0.1 : 0.75,
+                        ease: [0.16, 1, 0.3, 1],
                       },
                     },
                   }}
