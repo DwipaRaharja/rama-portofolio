@@ -1,18 +1,16 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useSyncExternalStore } from "react";
+import { useCallback, useRef, useSyncExternalStore } from "react";
 import { motion } from "motion/react";
-import {
-  ThemeAnimationType,
-  useModeAnimation,
-} from "react-theme-switch-animation";
 import { MoonIcon, SunIcon } from "@/components/ui/Icons";
 
 const emptySubscribe = () => () => {};
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
+  const isTransitioningRef = useRef(false);
+
   const mounted = useSyncExternalStore(
     emptySubscribe,
     () => true,
@@ -21,14 +19,40 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
 
   const isDark = resolvedTheme === "dark";
 
-  const { ref, toggleSwitchTheme } = useModeAnimation({
-    animationType: ThemeAnimationType.CIRCLE,
-    duration: 1150,
-    isDarkMode: isDark,
-    onDarkModeChange: (willBeDark) => {
-      setTheme(willBeDark ? "dark" : "light");
-    },
-  });
+  const toggleSwitchTheme = useCallback(async () => {
+    if (isTransitioningRef.current) return;
+    const nextTheme = isDark ? "light" : "dark";
+
+    const doc = document as Document & {
+      startViewTransition?: (callback: () => void | Promise<void>) => {
+        ready: Promise<void>;
+        finished: Promise<void>;
+      };
+    };
+
+    // Fallback: If View Transition API is not supported or user prefers reduced motion
+    if (
+      !doc.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setTheme(nextTheme);
+      return;
+    }
+
+    isTransitioningRef.current = true;
+
+    try {
+      const transition = doc.startViewTransition(() => {
+        setTheme(nextTheme);
+      });
+
+      await transition.finished;
+    } catch {
+      setTheme(nextTheme);
+    } finally {
+      isTransitioningRef.current = false;
+    }
+  }, [isDark, setTheme]);
 
   if (!mounted) {
     return (
@@ -41,21 +65,20 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
 
   return (
     <motion.button
-      ref={ref}
       type="button"
       onClick={toggleSwitchTheme}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.92 }}
-      className={`fixed bottom-5 right-5 z-40 flex size-12 items-center justify-center rounded-full border border-zinc-200/90 bg-white/90 text-zinc-800 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.04)] backdrop-blur-xl transition-colors duration-300 hover:border-zinc-350 hover:bg-white hover:text-zinc-950 hover:shadow-[0_14px_35px_-5px_rgba(0,0,0,0.22)] dark:border-white/15 dark:bg-[#121216]/90 dark:text-zinc-200 dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8),0_0_20px_rgba(255,255,255,0.04)] dark:hover:border-white/30 dark:hover:bg-[#18181f] dark:hover:text-white dark:hover:shadow-[0_14px_35px_-5px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.08)] sm:bottom-6 sm:right-6 sm:size-[50px] ${className}`}
+      className={`fixed bottom-5 right-5 z-40 flex size-12 items-center justify-center rounded-full border border-zinc-200/90 bg-white/90 text-zinc-800 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.04)] backdrop-blur-xl transition-colors duration-200 hover:border-zinc-350 hover:bg-white hover:text-zinc-950 hover:shadow-[0_14px_35px_-5px_rgba(0,0,0,0.22)] dark:border-white/15 dark:bg-[#121216]/90 dark:text-zinc-200 dark:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8),0_0_20px_rgba(255,255,255,0.04)] dark:hover:border-white/30 dark:hover:bg-[#18181f] dark:hover:text-white dark:hover:shadow-[0_14px_35px_-5px_rgba(0,0,0,0.9),0_0_25px_rgba(255,255,255,0.08)] sm:bottom-6 sm:right-6 sm:size-[50px] ${className}`}
     >
       <motion.div
         key={isDark ? "dark" : "light"}
         initial={{ rotate: -55, scale: 0.65, opacity: 0 }}
         animate={{ rotate: 0, scale: 1, opacity: 1 }}
         exit={{ rotate: 55, scale: 0.65, opacity: 0 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.0, ease: [0.4, 0, 0.2, 1] }}
         className="flex items-center justify-center"
       >
         {isDark ? (
@@ -73,3 +96,4 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     </motion.button>
   );
 }
+

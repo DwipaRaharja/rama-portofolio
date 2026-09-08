@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ComponentProps } from "react";
@@ -12,7 +12,7 @@ export function ThemeProvider({
       attribute="class"
       defaultTheme="dark"
       enableSystem
-      disableTransitionOnChange={false}
+      disableTransitionOnChange
       {...props}
     >
       {children}
