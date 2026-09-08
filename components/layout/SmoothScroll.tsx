@@ -4,8 +4,6 @@ import { useReducedMotion } from "motion/react";
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-const NAVBAR_OFFSET = 96;
-
 export function SmoothScroll() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -58,7 +56,7 @@ export function SmoothScroll() {
       window.history.replaceState(null, "", `#${sectionId}`);
 
       lenis.scrollTo(targetSection, {
-        offset: -NAVBAR_OFFSET,
+        offset: 0,
         duration: 1.15,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       });

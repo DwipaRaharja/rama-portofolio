@@ -11,7 +11,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative flex min-h-[calc(100vh-6rem)] scroll-mt-24 flex-col justify-center pb-20 pt-8 text-zinc-950 dark:text-white sm:pb-24 sm:pt-10 lg:min-h-[calc(100vh-6rem)] lg:pb-28 lg:pt-12"
+      className="relative scroll-mt-24 pb-20 pt-6 text-zinc-950 dark:text-white sm:pb-24 sm:pt-8 lg:pb-28"
     >
       <AboutFlowLines className="pointer-events-none absolute inset-x-0 -top-2 h-[390px] w-full text-zinc-950/[0.04] dark:text-white/10 sm:h-[440px]" />
       <DotGrid className="absolute -left-4 bottom-24 hidden text-zinc-950/[0.06] dark:text-white/15 md:grid" />
