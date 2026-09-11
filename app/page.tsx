@@ -11,8 +11,8 @@ export default function Home() {
     <main className="overflow-x-clip">
       <HeroSection />
       <AboutSection />
-      <TechStackSection />
       <EducationSection />
+      <TechStackSection />
       <PortfolioSection />
       <TestimonialSection />
       <ContactSection />

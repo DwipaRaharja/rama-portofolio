@@ -1,8 +1,8 @@
 export const navigationItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Tech Stack", href: "#tech-stack" },
   { label: "Education", href: "#education" },
+  { label: "Tech Stack", href: "#tech-stack" },
   { label: "Portfolio", href: "#portfolio" },
   { label: "Testimonials", href: "#testimonials" },
 ] as const;

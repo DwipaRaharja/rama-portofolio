@@ -57,7 +57,8 @@ export function Navbar() {
     }
 
     window.addEventListener(PORTFOLIO_INTRO_EVENT, completeIntro);
-    return () => window.removeEventListener(PORTFOLIO_INTRO_EVENT, completeIntro);
+    return () =>
+      window.removeEventListener(PORTFOLIO_INTRO_EVENT, completeIntro);
   }, []);
 
   useEffect(() => {
